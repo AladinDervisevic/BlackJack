@@ -23,6 +23,21 @@ class Player:
     def bet(self, amount):
         pass
 
+    def stand(self):
+        pass
+
+    def hit(self):
+        pass
+
+    def double_down(self):
+        pass
+
+    def split(self):
+        pass
+
+    def surrender(self):
+        pass
+
 class Game:
     def __init__(self, id):
         self.id = id
@@ -33,6 +48,21 @@ class Game:
         self.lot = 0
 
     def bet(self, player, amount):
+        pass
+
+    def stand(self, player):
+        pass
+
+    def hit(self, player):
+        pass
+
+    def double_down(self, player):
+        pass
+
+    def split(self, player):
+        pass
+
+    def surrender(self, player):
         pass
 
     def new_round(self):
