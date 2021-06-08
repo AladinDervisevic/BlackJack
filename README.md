@@ -1,2 +1,2 @@
 # BlackJack
-Projektna naloga za predmet Uvod v Programiranje.
+Igra Blackjacka kot projektna naloga pri predmetu Uvod v Programiranje.
