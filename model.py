@@ -2,6 +2,13 @@ import random
 
 WIN = 'W'
 LOSS = 'L'
+PLAYING = 'P'
+HIT = 'H'
+STAND = 'ST'
+SPLIT = 'SP'
+DOUBLE_DOWN = 'DD'
+SURENDER = 'SU'
+BET = 'B'
 
 class Card:
     def __init__(self, value, suit):
@@ -102,8 +109,25 @@ class Game:
     def loss(self):
         return self.player.money <= 0
 
-    def action(): # poteza
+    def bust():
         pass
+
+    def end_round():
+        pass
+
+    def action(self, action, amount = 0): #  poteza, treba vrniti stanje igre
+        if action == HIT:
+            self.hit()
+        elif action == STAND:
+            self.stand()
+        elif action == SPLIT:
+            self.split()
+        elif action == DOUBLE_DOWN:
+            self.double_down()
+        elif action == SURENDER:
+            self.surrender()
+        elif action == BET:
+            self.bet(amount)
           
 class Blackjack:
     def __init__(self):
@@ -120,4 +144,10 @@ class Blackjack:
 
     def new_game(self):
         id = self.new_id()
-        return Game(id)
+        self.games[id] = (Game(id), PLAYING)
+        return id
+
+    def action(self, game_id, action):
+        game, state = self.games[game_id]
+        state = game.action(action)
+        self.games[game_id] = (game, state)
