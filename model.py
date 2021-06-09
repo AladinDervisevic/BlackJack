@@ -11,16 +11,28 @@ SURENDER = 'SU'
 BET = 'B'
 
 class Card:
-    def __init__(self, value, suit):
+    def __init__(self, kind, suit):
         self.showing = True
-        self.value = value
+        self.kind = kind
         self.suit = suit
+        if kind in range(2, 11):
+            self.value = kind
+        elif kind in 'JQK':
+            self.value = 10
+        else:
+            self.value = 11  # Ace can be worth 1 or 11
+
+    def __str__(self):
+        return f'{self.kind} {self.suit}'
+
+    def __repr__(self):
+        return f'Card({self.kind},{self.suit})'
 
 def new_deck():
     deck = []
-    for value in range(1, 15):
+    for kind in list(range(2, 11)) + ['A', 'J', 'Q', 'K']:
         for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
-            deck.append(Card(value, suit))
+            deck.append(Card(kind, suit))
     return deck
 
 class Dealer:
@@ -42,8 +54,7 @@ class Player:
         return f'Player({self.name})'
 
 class Game:
-    def __init__(self, id):
-        self.id = id
+    def __init__(self):
         self.deck = new_deck()
         self.player = Player()
         self.dealer = Dealer()
@@ -51,7 +62,7 @@ class Game:
         self.graveyard = []
 
     def __repr__(self):
-        return f'Game({self.id})'
+        return 'Game()'
 
     def bet(self, amount):
         if amount >= self.player.money:
@@ -109,8 +120,8 @@ class Game:
     def loss(self):
         return self.player.money <= 0
 
-    def bust():
-        pass
+    def bust(self):
+        return sum(i.value for i in self.player.cards) > 21
 
     def end_round():
         pass
@@ -151,3 +162,6 @@ class Blackjack:
         game, state = self.games[game_id]
         state = game.action(action)
         self.games[game_id] = (game, state)
+
+def new_game():
+    return Game()
