@@ -30,16 +30,24 @@ class Card:
             self.value = 11  # Ace can be worth 1 or 11
 
     def __str__(self):
-        return f'{self.kind} {self.suit}'
+        if self.showing:
+            return f'{self.kind} {self.suit}'
+        else:
+            return '[?]'
 
     def __repr__(self):
-        return f'Card({self.kind},{self.suit})'
+        if self.showing:
+            return f'Card({self.kind}, {self.suit})'
+        else:
+            return 'Card(?)'
 
 def new_deck():
     deck = []
     for kind in list(range(2, 11)) + ['A', 'J', 'Q', 'K']:
         for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
-            deck.append(Card(kind, suit))
+            for _ in range(2):
+                deck.append(Card(kind, suit))  # so that there are 2 decks in the game
+    random.shuffle(deck)
     return deck
 
 def hand_value(cards):
@@ -136,10 +144,14 @@ class Game:
         return SURRENDER
 
     def deal_cards(self):
-        if bool(self.graveyard):  #if players currently hold some cards
-            self.graveyard.append(i for i in self.dealer.cards)
+        if len(self.deck) < 25:
+            self.deck += self.graveyard
+            random.shuffle(self.deck)
+            self.graveyard = []
+        if self.player.cards:  #if players currently hold some cards
+            self.graveyard += self.dealer.cards
+            self.graveyard += self.player.cards
             self.dealer.cards = []
-            self.graveyard.append(i for i in self.player.cards)
             self.player.cards = self.player.saved_cards
         for char in [self.player, self.dealer]:
             for i in range(2):
@@ -154,6 +166,7 @@ class Game:
         self.dealer.money -= 10
         self.player.money -= 10
         self.deal_cards()
+        return 'NEW ROUND'
 
     def win(self):
         return self.dealer.money <= 0

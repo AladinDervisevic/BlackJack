@@ -3,14 +3,25 @@ import model
 def display_game(game):
     return f'''
 Dealer's cards: {game.dealer.cards}
-LOT: {game.lot}
-Your cards: {game.player.cards}'''
+Dealer's balance: {game.dealer.money} $
+LOT: {game.lot} $
+Your cards: {game.player.cards}
+Your balance: {game.player.money} $'''
 
-def print_win(game):
+def win(game):
     return f'You won and earned {game.player.money} $.'
 
-def print_loss():
+def loss():
     return 'You are out of money. Better luck next time.'
+
+def round_win():
+    return 'You have won the round.'
+
+def round_loss():
+    return 'You have lost the round.'
+
+def tie():
+    return "It's a tie."
 
 def demand_action():
     legend = f'''Hit : H
@@ -26,7 +37,7 @@ def start_interface():
     game, state = model.new_game()
 
     while True:
-        game.new_round()
+        print(game.new_round())
 
         while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
             print(display_game(game))
@@ -37,7 +48,7 @@ def start_interface():
                 action = demand_action()
 
             if action == model.BET:
-                amount = input('How much? ')
+                amount = int(input('How much? '))
                 state = game.bet(amount)
             elif action == model.HIT:
                 state = game.hit()
@@ -49,5 +60,20 @@ def start_interface():
             else:
                 state = game.action(action)
 
+        if state == model.ROUND_WIN:
+            print(round_win())
+        elif state == model.ROUND_LOSS:
+            print(round_loss())
+        elif state == model.TIE:
+            print(tie())
+
+        if game.win():
+            state = model.WIN
+            print(win(game))
+            break
+        elif game.loss():
+            state = model.LOSS
+            print(loss())
+            break
 
 start_interface()
