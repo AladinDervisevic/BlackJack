@@ -1,8 +1,7 @@
 import model
 
 def display_game(game):
-    return f'''
-Dealer's cards: {game.dealer.cards}
+    return f'''Dealer's cards: {game.dealer.cards}
 Dealer's balance: {game.dealer.money} $
 LOT: {game.lot} $
 Your cards: {game.player.cards}
@@ -43,7 +42,7 @@ def start_interface():
         game, state = model.new_game()
         player = game.player
         print('NEW GAME\n')
-
+        
         while True:
             state = game.new_round()
             print('NEW ROUND')
@@ -70,7 +69,12 @@ def start_interface():
                         game.double_down()
                         state = game.end_round()
                     elif action == model.SPLIT:
-                        game.split()
+                        if len(player.cards) != 2:
+                            print("You cannot split once you have more than 2 cards.")
+                        elif player.cards[0].kind != player.cards[1].kind:
+                            print("You cannot split since your cards are not of the same kind.")
+                        else:
+                            game.split()
                     elif action == model.STAND:
                         game.stand()
                         state = game.end_round()
@@ -99,8 +103,9 @@ def start_interface():
                 state = model.LOSS
                 print(loss())
                 break
+            print()
             
-        answer = input('Would you like to play again? ')
+        answer = input('\nWould you like to play again? ')
         if answer.lower() == 'no':
             print('GOODBYE')
             break

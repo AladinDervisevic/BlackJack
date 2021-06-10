@@ -141,7 +141,7 @@ class Game:
         if self.bust():
             return BUST
         elif double_down:
-            pass
+            return DOUBLE_DOWN
         else:
             return HIT
 
@@ -155,9 +155,15 @@ class Game:
         self.dealer.money -= self.lot
         self.lot *= 2
         self.hit(True)
+        self.stand()
 
     def split(self):
-        return SPLIT
+        card = self.player.cards[1]
+        self.player.cards.remove(card)
+        self.player.saved_cards.append(card)
+        card = random.choice(self.deck)
+        self.player.cards.append(card)
+        self.deck.remove(card)
 
     def deal_cards(self):
         if len(self.deck) < 25:
@@ -168,12 +174,15 @@ class Game:
             self.graveyard += self.dealer.cards
             self.graveyard += self.player.cards
             self.dealer.cards = []
-            self.player.cards = []
+            self.player.cards = [] + self.player.saved_cards
+            self.player.saved_cards = []
         for char in [self.player, self.dealer]:
             for i in range(2):
                 card = random.choice(self.deck)
                 if i == 1 and char == self.dealer:
                     card.showing = False
+                if i == 1 and char == self.player and len(char.cards) == 2:
+                    continue
                 self.deck.remove(card)
                 char.cards.append(card)
 
