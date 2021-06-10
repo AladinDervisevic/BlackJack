@@ -13,17 +13,14 @@ STAND = 'ST'
 SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
 BET = 'B'
-ACE = 'A'
-
-ACTIONS = [STAND, SPLIT, DOUBLE_DOWN, BET, HIT] # player's moves
 
 class Card:
     def __init__(self, kind, suit):
         self.showing = True
         self.kind = kind
         self.suit = suit
-        if kind in range(2, 11):
-            self.value = kind
+        if kind in list(str(i) for i in range(2, 11)):
+            self.value = int(kind)
         elif kind in 'JQK':
             self.value = 10
         else:
@@ -46,7 +43,7 @@ class Card:
 
 def new_deck():
     deck = []
-    for kind in list(range(2, 11)) + ['A', 'J', 'Q', 'K']:
+    for kind in list(str(i) for i in range(2, 11)) + ['A', 'J', 'Q', 'K']:
         for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
             for _ in range(2):
                 deck.append(Card(kind, suit))  # so that there are 2 decks in the game
@@ -75,7 +72,7 @@ class Player:
         return f'Player({self.name})'
 
     def blackjack(self):
-        return all(card.kind in 'AK' for card in self.cards)
+        return any(i.kind == 'A' for i in self.cards) and any(i.kind == 'K' for i in self.cards)
 
 class Game:
     def __init__(self):
@@ -127,12 +124,14 @@ class Game:
     def bust(self):
         return sum(i.value for i in self.player.cards) > 21
 
-    def hit(self):
+    def hit(self, double_down = False):
         card = random.choice(self.deck)
         self.deck.remove(card)
         self.player.cards.append(card)
         if self.bust():
             return BUST
+        elif double_down:
+            pass
         else:
             return HIT
 
@@ -142,7 +141,10 @@ class Game:
         return HIT if not self.bust() else BUST
 
     def double_down(self):
-        return DOUBLE_DOWN
+        self.player.money -= self.lot
+        self.dealer.money -= self.lot
+        self.lot *= 2
+        self.hit(True)
 
     def split(self):
         return SPLIT

@@ -23,6 +23,9 @@ def round_loss():
 def tie():
     return "It's a tie."
 
+def bust():
+    return "You're over 21. It's a bust."
+
 def blackjack_win():
     return 'You have won the round with a blackjack. Bonus: 100 $'
 
@@ -36,7 +39,6 @@ BET = B'''
     return input('What will you do: ')
 
 def start_interface():
-    print('WELCOME TO BLACKJACK')
     while True:
         game, state = model.new_game()
         player = game.player
@@ -45,12 +47,11 @@ def start_interface():
         while True:
             state = game.new_round()
             print('NEW ROUND')
-
             if not player.blackjack():
                 while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
                     print(display_game(game))
 
-                    action = demand_action()
+                    action = demand_action().upper()
                     while action not in model.ACTIONS:
                         print('Faulty input.')
                         action = demand_action()
@@ -66,6 +67,7 @@ def start_interface():
                             state = game.set_ace_value(value)
                     elif action == model.DOUBLE_DOWN:
                         game.double_down()
+                        state = game.end_round()
                     elif action == model.SPLIT:
                         game.split()
                     elif action == model.STAND:
@@ -79,6 +81,9 @@ def start_interface():
                     print(round_loss())
                 elif state == model.TIE:
                     print(tie())
+                elif state == model.BUST:
+                    print(bust())
+                game.end_round()
             else:
                 print(display_game(game))
                 game.blackjack()
