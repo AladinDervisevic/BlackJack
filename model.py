@@ -181,7 +181,7 @@ class Game:
                 card = random.choice(self.deck)
                 if i == 1 and char == self.dealer:
                     card.showing = False
-                if i == 1 and char == self.player and len(char.cards) == 2:
+                if len(self.player.cards) == 2:
                     continue
                 self.deck.remove(card)
                 char.cards.append(card)

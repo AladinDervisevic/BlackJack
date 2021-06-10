@@ -42,7 +42,7 @@ def start_interface():
         game, state = model.new_game()
         player = game.player
         print('NEW GAME\n')
-        
+
         while True:
             state = game.new_round()
             print('NEW ROUND')
@@ -73,6 +73,8 @@ def start_interface():
                             print("You cannot split once you have more than 2 cards.")
                         elif player.cards[0].kind != player.cards[1].kind:
                             print("You cannot split since your cards are not of the same kind.")
+                        elif player.saved_cards:
+                            print("You cannot double split.")
                         else:
                             game.split()
                     elif action == model.STAND:
