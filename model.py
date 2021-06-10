@@ -7,6 +7,7 @@ ROUND_WIN = 'RW'
 ROUND_LOSS = 'RL'
 TIE = 'T'
 BUST = 'BU'
+NEW_ROUND = 'NR'
 HIT = 'H'
 STAND = 'ST'
 SPLIT = 'SP'
@@ -37,7 +38,10 @@ class Card:
 
     def __repr__(self):
         if self.showing:
-            return f'Card({self.kind}, {self.suit})'
+            if self.kind in 'AJQK':
+                return f'Card({self.kind} = {self.value}, {self.suit})'
+            else:
+                return f'Card({self.kind}, {self.suit})'
         else:
             return 'Card(?)'
 
@@ -71,6 +75,9 @@ class Player:
     def __repr__(self):
         return f'Player({self.name})'
 
+    def blackjack(self):
+        return all(card.kind in 'AK' for card in self.cards)
+
 class Game:
     def __init__(self):
         self.deck = new_deck()
@@ -95,6 +102,14 @@ class Game:
         else:
             return 'Nimaš dovolj denarja za tolikšno stavo.'
 
+    def stand(self):
+        self.dealer.cards[1].showing = True
+        while hand_value(self.dealer.cards) < 17:
+            card = random.choice(self.deck)
+            self.dealer.cards.append(card)
+            if card.kind == 'A' and hand_value(self.dealer.cards) > 21:
+                card.value = 1
+
     def end_round(self):
         if hand_value(self.dealer.cards) > 21 or (hand_value(self.player.cards) > hand_value(self.player.cards)):
             self.player.money += self.lot
@@ -109,10 +124,6 @@ class Game:
             self.dealer.money += self.lot
             self.lot = 0
             return ROUND_LOSS
-
-    def stand(self):
-        self.dealer.cards[1].showing = True
-        return self.end_round()
 
     def bust(self):
         return sum(i.value for i in self.player.cards) > 21
@@ -166,7 +177,11 @@ class Game:
         self.dealer.money -= 10
         self.player.money -= 10
         self.deal_cards()
-        return 'NEW ROUND'
+        return NEW_ROUND
+
+    def blackjack(self):
+        self.player.money += (self.lot + 100)
+        self.lot = 0
 
     def win(self):
         return self.dealer.money <= 0

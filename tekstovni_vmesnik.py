@@ -23,6 +23,9 @@ def round_loss():
 def tie():
     return "It's a tie."
 
+def blackjack_win():
+    return 'You have won the round with a blackjack. Bonus: 100 $'
+
 def demand_action():
     legend = f'''Hit : H
 STAND = ST
@@ -34,46 +37,63 @@ BET = B'''
     return input('What will you do: ')
 
 def start_interface():
-    game, state = model.new_game()
-
+    print('WELCOME TO BLACKJACK')
     while True:
-        print(game.new_round())
+        game, state = model.new_game()
+        player = game.player
+        print('NEW GAME\n')
 
-        while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
-            print(display_game(game))
+        while True:
+            state = game.new_round()
+            print('NEW ROUND')
 
-            action = demand_action()
-            while action not in model.ACTIONS:
-                print('Faulty input.')
-                action = demand_action()
+            if not player.blackjack():
+                while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
+                    print(display_game(game))
 
-            if action == model.BET:
-                amount = int(input('How much? '))
-                state = game.bet(amount)
-            elif action == model.HIT:
-                state = game.hit()
-                if state == model.ACE:
-                    value = input('Set value of ace to 1 or 11? ')
-                    state = game.set_ace_value(value)
-            elif action == model.STAND:
-                state = game.stand()
+                    action = demand_action()
+                    while action not in model.ACTIONS:
+                        print('Faulty input.')
+                        action = demand_action()
+
+                    if action == model.BET:
+                        amount = int(input('How much? '))
+                        state = game.bet(amount)
+                    elif action == model.HIT:
+                        state = game.hit()
+                        if state == model.ACE:
+                            value = input('Set value of ace to 1 or 11? ')
+                            state = game.set_ace_value(value)
+                    elif action == model.STAND:
+                        game.stand()
+                        state = game.end_round()
+                    else:
+                        state = game.action(action)
+
+                print(display_game(game))
+                if state == model.ROUND_WIN:
+                    print(round_win())
+                elif state == model.ROUND_LOSS:
+                    print(round_loss())
+                elif state == model.TIE:
+                    print(tie())
             else:
-                state = game.action(action)
+                print(display_game(game))
+                game.blackjack()
+                print(blackjack_win())
 
-        if state == model.ROUND_WIN:
-            print(round_win())
-        elif state == model.ROUND_LOSS:
-            print(round_loss())
-        elif state == model.TIE:
-            print(tie())
-
-        if game.win():
-            state = model.WIN
-            print(win(game))
-            break
-        elif game.loss():
-            state = model.LOSS
-            print(loss())
+            if game.win():
+                state = model.WIN
+                print(win(game))
+                break
+            elif game.loss():
+                state = model.LOSS
+                print(loss())
+                break
+            
+        answer = input('Would you like to play again? ')
+        if answer.lower() == 'no':
+            print('GOODBYE')
             break
 
 start_interface()
