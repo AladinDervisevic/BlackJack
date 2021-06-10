@@ -53,17 +53,18 @@ def start_interface():
 
                     action = demand_action().upper()
                     while action not in model.ACTIONS:
-                        print('Faulty input.')
-                        action = demand_action()
+                        print('\nFAULTY INPUT, TRY AGAIN.')
+                        action = demand_action().upper()
 
                     if action == model.BET:
                         amount = int(input('How much? '))
-                        state = game.bet(amount)
+                        game.bet(amount)
                     elif action == model.HIT:
                         state = game.hit()
                         new_card = game.player.cards[-1]
                         if new_card.kind == 'A':
-                            value = input('Set value of ace to 1 or 11? ')
+                            print(display_game(game))
+                            value = int(input('Set value of ace to 1 or 11? '))
                             state = game.set_ace_value(value)
                     elif action == model.DOUBLE_DOWN:
                         game.double_down()
@@ -73,6 +74,7 @@ def start_interface():
                     elif action == model.STAND:
                         game.stand()
                         state = game.end_round()
+                        break
 
                 print(display_game(game))
                 if state == model.ROUND_WIN:

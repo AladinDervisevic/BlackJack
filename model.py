@@ -14,6 +14,8 @@ SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
 BET = 'B'
 
+ACTIONS = [BET, HIT, STAND, SPLIT, DOUBLE_DOWN] # player's moves
+
 class Card:
     def __init__(self, kind, suit):
         self.showing = True
@@ -72,7 +74,7 @@ class Player:
         return f'Player({self.name})'
 
     def blackjack(self):
-        return any(i.kind == 'A' for i in self.cards) and any(i.kind == 'K' for i in self.cards)
+        return any(i.kind == 'A' for i in self.cards) and any(i.kind in ['J', 'Q', 'K', '10'] for i in self.cards)
 
 class Game:
     def __init__(self):
@@ -86,7 +88,7 @@ class Game:
         return 'Game()'
 
     def bet(self, amount):
-        if amount >= self.player.money:
+        if amount <= self.player.money:
             self.player.money -= amount
             self.lot += amount
             if amount > self.dealer.money:
@@ -106,8 +108,23 @@ class Game:
             if card.kind == 'A' and hand_value(self.dealer.cards) > 21:
                 card.value = 1
 
+    def bust(self):
+        return sum(i.value for i in self.player.cards) > 21
+
     def end_round(self):
-        if hand_value(self.dealer.cards) > 21 or (hand_value(self.player.cards) > hand_value(self.player.cards)):
+        if hand_value(self.dealer.cards) > 21:
+            self.player.money += self.lot
+            self.lot = 0
+            return ROUND_WIN
+        elif hand_value(self.player.cards) > 21:
+            self.dealer.money += self.lot
+            self.lot = 0
+            return ROUND_LOSS
+        if hand_value(self.player.cards) < hand_value(self.dealer.cards):
+            self.dealer.money += self.lot
+            self.lot = 0
+            return ROUND_LOSS
+        elif hand_value(self.player.cards) > hand_value(self.dealer.cards):
             self.player.money += self.lot
             self.lot = 0
             return ROUND_WIN
@@ -116,13 +133,6 @@ class Game:
             self.dealer.money += (self.lot // 2)
             self.lot = 0
             return TIE
-        elif hand_value(self.player.cards) < hand_value(self.dealer.cards):
-            self.dealer.money += self.lot
-            self.lot = 0
-            return ROUND_LOSS
-
-    def bust(self):
-        return sum(i.value for i in self.player.cards) > 21
 
     def hit(self, double_down = False):
         card = random.choice(self.deck)
@@ -158,7 +168,7 @@ class Game:
             self.graveyard += self.dealer.cards
             self.graveyard += self.player.cards
             self.dealer.cards = []
-            self.player.cards = self.player.saved_cards
+            self.player.cards = []
         for char in [self.player, self.dealer]:
             for i in range(2):
                 card = random.choice(self.deck)
