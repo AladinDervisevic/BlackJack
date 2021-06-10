@@ -23,27 +23,31 @@ BET = B'''
     return input('What will you do: ')
 
 def start_interface():
-    game = model.new_game()
+    game, state = model.new_game()
 
     while True:
         game.new_round()
-        print(display_game(game))
 
-        action = demand_action()
-        if action == 'H':
-            game.hit()
-        elif action == 'ST':
-            game.stand()
-        elif action == 'SP':
-            game.split()
-        elif action == 'SU':
-            game.surrender()
-        elif action == 'DD':
-            game.double_down()
-        elif action == 'B':
-            amount = input('How much? ')
-            game.bet(amount)
-        else:
-            print('Faulty input.')
-        
-        game.end_round()
+        while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
+            print(display_game(game))
+
+            action = demand_action()
+            while action not in model.ACTIONS:
+                print('Faulty input.')
+                action = demand_action()
+
+            if action == model.BET:
+                amount = input('How much? ')
+                state = game.bet(amount)
+            elif action == model.HIT:
+                state = game.hit()
+                if state == model.ACE:
+                    value = input('Set value of ace to 1 or 11? ')
+                    state = game.set_ace_value(value)
+            elif action == model.STAND:
+                state = game.stand()
+            else:
+                state = game.action(action)
+
+
+start_interface()

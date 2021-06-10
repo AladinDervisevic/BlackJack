@@ -1,14 +1,21 @@
 import random
 
+START = 'P'
 WIN = 'W'
 LOSS = 'L'
-PLAYING = 'P'
+ROUND_WIN = 'RW'
+ROUND_LOSS = 'RL'
+TIE = 'T'
+BUST = 'BU'
 HIT = 'H'
 STAND = 'ST'
 SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
-SURENDER = 'SU'
+SURRENDER = 'SU'
 BET = 'B'
+ACE = 'A'
+
+ACTIONS = [STAND, SPLIT, DOUBLE_DOWN, SURRENDER, BET, HIT] # player's moves
 
 class Card:
     def __init__(self, kind, suit):
@@ -34,6 +41,9 @@ def new_deck():
         for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
             deck.append(Card(kind, suit))
     return deck
+
+def hand_value(cards):
+    return sum(card.value for card in cards)
 
 class Dealer:
     def __init__(self):
@@ -77,22 +87,53 @@ class Game:
         else:
             return 'Nimaš dovolj denarja za tolikšno stavo.'
 
+    def end_round(self):
+        if hand_value(self.dealer.cards) > 21 or (hand_value(self.player.cards) > hand_value(self.player.cards)):
+            self.player.money += self.lot
+            self.lot = 0
+            return ROUND_WIN
+        elif hand_value(self.player.cards) == hand_value(self.dealer.cards):
+            self.player.money += (self.lot // 2)
+            self.dealer.money += (self.lot // 2)
+            self.lot = 0
+            return TIE
+        elif hand_value(self.player.cards) < hand_value(self.dealer.cards):
+            self.dealer.money += self.lot
+            self.lot = 0
+            return ROUND_LOSS
+
     def stand(self):
-        pass
+        self.dealer.cards[1].showing = True
+        return self.end_round()
+
+    def bust(self):
+        return sum(i.value for i in self.player.cards) > 21
 
     def hit(self):
         card = random.choice(self.deck)
         self.deck.remove(card)
         self.player.cards.append(card)
+        if card.kind == 'A':
+            return ACE
+        if self.bust():
+            return BUST
+        else:
+            return HIT
+
+    def set_ace_value(self, value):
+        for card in self.player.cards[::-1]:
+            if card.kind == 'A':
+                card.value = value
+                return HIT if not self.bust() else BUST
 
     def double_down(self):
-        pass
+        return DOUBLE_DOWN
 
     def split(self):
-        pass
+        return SPLIT
 
     def surrender(self):
-        pass
+        return SURRENDER
 
     def deal_cards(self):
         if bool(self.graveyard):  #if players currently hold some cards
@@ -120,12 +161,6 @@ class Game:
     def loss(self):
         return self.player.money <= 0
 
-    def bust(self):
-        return sum(i.value for i in self.player.cards) > 21
-
-    def end_round():
-        pass
-
     def action(self, action, amount = 0): #  poteza, treba vrniti stanje igre
         if action == HIT:
             self.hit()
@@ -135,10 +170,8 @@ class Game:
             self.split()
         elif action == DOUBLE_DOWN:
             self.double_down()
-        elif action == SURENDER:
+        elif action == SURRENDER:
             self.surrender()
-        elif action == BET:
-            self.bet(amount)
           
 class Blackjack:
     def __init__(self):
@@ -155,7 +188,7 @@ class Blackjack:
 
     def new_game(self):
         id = self.new_id()
-        self.games[id] = (Game(id), PLAYING)
+        self.games[id] = (Game(id), START)
         return id
 
     def action(self, game_id, action):
@@ -164,4 +197,4 @@ class Blackjack:
         self.games[game_id] = (game, state)
 
 def new_game():
-    return Game()
+    return (Game(), START)
