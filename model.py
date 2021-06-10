@@ -12,11 +12,10 @@ HIT = 'H'
 STAND = 'ST'
 SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
-SURRENDER = 'SU'
 BET = 'B'
 ACE = 'A'
 
-ACTIONS = [STAND, SPLIT, DOUBLE_DOWN, SURRENDER, BET, HIT] # player's moves
+ACTIONS = [STAND, SPLIT, DOUBLE_DOWN, BET, HIT] # player's moves
 
 class Card:
     def __init__(self, kind, suit):
@@ -132,27 +131,21 @@ class Game:
         card = random.choice(self.deck)
         self.deck.remove(card)
         self.player.cards.append(card)
-        if card.kind == 'A':
-            return ACE
         if self.bust():
             return BUST
         else:
             return HIT
 
     def set_ace_value(self, value):
-        for card in self.player.cards[::-1]:
-            if card.kind == 'A':
-                card.value = value
-                return HIT if not self.bust() else BUST
+        card = self.player.cards[-1]
+        card.value = value
+        return HIT if not self.bust() else BUST
 
     def double_down(self):
         return DOUBLE_DOWN
 
     def split(self):
         return SPLIT
-
-    def surrender(self):
-        return SURRENDER
 
     def deal_cards(self):
         if len(self.deck) < 25:
@@ -188,18 +181,6 @@ class Game:
 
     def loss(self):
         return self.player.money <= 0
-
-    def action(self, action, amount = 0): #  poteza, treba vrniti stanje igre
-        if action == HIT:
-            self.hit()
-        elif action == STAND:
-            self.stand()
-        elif action == SPLIT:
-            self.split()
-        elif action == DOUBLE_DOWN:
-            self.double_down()
-        elif action == SURRENDER:
-            self.surrender()
           
 class Blackjack:
     def __init__(self):

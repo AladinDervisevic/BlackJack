@@ -30,7 +30,6 @@ def demand_action():
     legend = f'''Hit : H
 STAND = ST
 SPLIT = SP
-SURRENDER = SU
 DOUBLE DOWN = DD
 BET = B'''
     print(legend)
@@ -61,14 +60,17 @@ def start_interface():
                         state = game.bet(amount)
                     elif action == model.HIT:
                         state = game.hit()
-                        if state == model.ACE:
+                        new_card = game.player.cards[-1]
+                        if new_card.kind == 'A':
                             value = input('Set value of ace to 1 or 11? ')
                             state = game.set_ace_value(value)
+                    elif action == model.DOUBLE_DOWN:
+                        game.double_down()
+                    elif action == model.SPLIT:
+                        game.split()
                     elif action == model.STAND:
                         game.stand()
                         state = game.end_round()
-                    else:
-                        state = game.action(action)
 
                 print(display_game(game))
                 if state == model.ROUND_WIN:
