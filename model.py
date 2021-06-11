@@ -13,6 +13,11 @@ STAND = 'ST'
 SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
 BET = 'B'
+legend = f'''Hit : H
+STAND = ST
+SPLIT = SP
+DOUBLE DOWN = DD
+BET = B'''
 
 ACTIONS = [BET, HIT, STAND, SPLIT, DOUBLE_DOWN] # player's moves
 
@@ -97,6 +102,7 @@ class Game:
             else:
                 self.lot += amount
                 self.dealer.money -= amount
+            return BET
         else:
             return 'Nimaš dovolj denarja za tolikšno stavo.'
 
@@ -139,11 +145,11 @@ class Game:
         self.deck.remove(card)
         self.player.cards.append(card)
         if self.bust():
-            return BUST
+            return BUST, card
         elif double_down:
-            return DOUBLE_DOWN
+            return DOUBLE_DOWN, card
         else:
-            return HIT
+            return HIT, card
 
     def set_ace_value(self, value):
         card = self.player.cards[-1]
@@ -181,7 +187,7 @@ class Game:
                 card = random.choice(self.deck)
                 if i == 1 and char == self.dealer:
                     card.showing = False
-                if len(self.player.cards) == 2:
+                if char == self.player and len(char.cards) == 2:
                     continue
                 self.deck.remove(card)
                 char.cards.append(card)

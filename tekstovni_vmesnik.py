@@ -1,17 +1,17 @@
 import model
 
 def display_game(game):
-    return f'''Dealer's cards: {game.dealer.cards}
+    return f'''\nDealer's cards: {game.dealer.cards}
 Dealer's balance: {game.dealer.money} $
 LOT: {game.lot} $
 Your cards: {game.player.cards}
 Your balance: {game.player.money} $'''
 
 def win(game):
-    return f'You won and earned {game.player.money} $.'
+    return f'\nYOU HAVE WON AND EARNED {game.player.money} $.'
 
 def loss():
-    return 'You are out of money. Better luck next time.'
+    return '\nYOU ARE OUT OF MONEY, BETTER LUCK NEXT TIME.'
 
 def round_win():
     return 'You have won the round.'
@@ -28,60 +28,69 @@ def bust():
 def blackjack_win():
     return 'You have won the round with a blackjack. Bonus: 100 $'
 
+def end_round():
+    return input('To continue press ENTER.')
+
 def demand_action():
-    legend = f'''Hit : H
-STAND = ST
-SPLIT = SP
-DOUBLE DOWN = DD
-BET = B'''
-    print(legend)
-    return input('What will you do: ')
+    print(model.legend)
+    action = input('What will you do: ').upper()
+    while action not in model.ACTIONS:
+        print('\nFAULTY INPUT')
+        action = input('What will you do: ').upper()
+    return action
+
+def set_ace_value(game):
+    value = int(input('Set value of ace to 1 or 11? '))
+    return game.set_ace_value(value)
+
+def is_ace(card):
+    return card.kind == 'A'
+
+def valid_split():
+    if len(player.cards) != 2:
+        print("You cannot split once you have more than 2 cards.")
+        return False
+    elif player.cards[0].kind != player.cards[1].kind:
+        print("You cannot split since your cards are not of the same kind.")
+        return False
+    elif player.saved_cards:
+        print("You cannot double split.")
+        return False
+    return True
+
+def execute(action, game = None):
+    if action == model.BET:
+        amount = int(input('How much? '))
+        game.bet(amount)
+    elif action == model.HIT:
+        state, new_card = game.hit()
+        if is_ace(new_card):
+            print(display_game(game))
+            state = set_ace_value(game)
+        return state
+    elif action == model.DOUBLE_DOWN:
+        game.double_down()
+        return game.end_round()
+    elif action == model.SPLIT and valid_split():
+        game.split()
+    elif action == model.STAND:
+        game.stand()
+        return game.end_round()
 
 def start_interface():
     while True:
         game, state = model.new_game()
         player = game.player
-        print('NEW GAME\n')
+        print('NEW GAME')
 
         while True:
             state = game.new_round()
-            print('NEW ROUND')
+            print('\nNEW ROUND')
             if not player.blackjack():
                 while state not in [model.ROUND_WIN, model.ROUND_LOSS, model.TIE, model.BUST]:
                     print(display_game(game))
-
-                    action = demand_action().upper()
-                    while action not in model.ACTIONS:
-                        print('\nFAULTY INPUT, TRY AGAIN.')
-                        action = demand_action().upper()
-
-                    if action == model.BET:
-                        amount = int(input('How much? '))
-                        game.bet(amount)
-                    elif action == model.HIT:
-                        state = game.hit()
-                        new_card = game.player.cards[-1]
-                        if new_card.kind == 'A':
-                            print(display_game(game))
-                            value = int(input('Set value of ace to 1 or 11? '))
-                            state = game.set_ace_value(value)
-                    elif action == model.DOUBLE_DOWN:
-                        game.double_down()
-                        state = game.end_round()
-                    elif action == model.SPLIT:
-                        if len(player.cards) != 2:
-                            print("You cannot split once you have more than 2 cards.")
-                        elif player.cards[0].kind != player.cards[1].kind:
-                            print("You cannot split since your cards are not of the same kind.")
-                        elif player.saved_cards:
-                            print("You cannot double split.")
-                        else:
-                            game.split()
-                    elif action == model.STAND:
-                        game.stand()
-                        state = game.end_round()
-                        break
-
+                    action = demand_action()
+                    state = execute(action, game)
                 print(display_game(game))
                 if state == model.ROUND_WIN:
                     print(round_win())
@@ -96,18 +105,16 @@ def start_interface():
                 print(display_game(game))
                 game.blackjack()
                 print(blackjack_win())
+            end_round()
 
             if game.win():
-                state = model.WIN
                 print(win(game))
                 break
             elif game.loss():
-                state = model.LOSS
                 print(loss())
                 break
-            print()
             
-        answer = input('\nWould you like to play again? ')
+        answer = input('Would you like to play again? ')
         if answer.lower() == 'no':
             print('GOODBYE')
             break
