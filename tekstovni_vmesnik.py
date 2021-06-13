@@ -1,5 +1,5 @@
 from model import Blackjack
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 import model
 import colorama
 
@@ -35,7 +35,7 @@ def display_cards(cards):
     return string.strip()
 
 def display_game(game):
-    return f'''\nDealer's cards: {display_cards(game.dealer.cards)}
+    return f'''Dealer's cards: {display_cards(game.dealer.cards)}
 Dealer's balance: {game.dealer.money} $
 LOT: {game.lot} $
 Your cards: {display_cards(game.player.cards)}
@@ -62,25 +62,29 @@ def bust():
 def blackjack_win():
     return good('You have won the round with a blackjack. Bonus: 100 $')
 
-def end_round():
+def pause():
     return input('To continue press ENTER.')
 
 ##################################################################
-# Functions for input
+# Entry functions
 ##################################################################
 
 def demand_action():
     print()
+    print(neutral(('What would you like to do?')))
     print(model.MOVES)
-    action = input('What will you do: ').upper()
+    action = input().upper()
     while action not in model.ACTIONS:
-        print('\nFAULTY INPUT')
-        action = input('What will you do: ').upper()
+        print()
+        print(bad('FAULTY INPUT'))
+        print(neutral(('What would you like to do?')))
+        action = input().upper()
     return action
 
 def set_ace_value(game):
     while True:
-        value = input('Set value of ace to 1 or 11? ')
+        print(neutral('Set value of ace to 1 or 11? '))
+        value = input()
         if value == '1' or value == '11':
             break
         print(bad('FAULTY INPUT'))
@@ -92,13 +96,13 @@ def set_ace_value(game):
 
 def valid_split(game):
     if len(game.player.cards) != 2:
-        print("You cannot split once you have more than 2 cards.")
+        print(bad("You cannot split once you have more than 2 cards."))
         return False
     elif game.player.cards[0].kind != game.player.cards[1].kind:
-        print("You cannot split since your cards are not of the same kind.")
+        print(bad("You cannot split since your cards are not of the same kind."))
         return False
     elif game.player.saved_cards:
-        print("You cannot double split.")
+        print(bad("You cannot double split."))
         return False
     return True
 
@@ -130,23 +134,32 @@ def new_round(game):
     print(neutral('NEW ROUND'))
     return game.new_round()
 
+def last_game(blackjack):
+    if blackjack.games == {}:
+        return blackjack.new_game()
+    else:
+        last_game_id = max(blackjack.games)
+        return blackjack.games[last_game_id]
+
 ##################################################################
 # TEXTUAL INTERFACE
 ##################################################################
 
 def start_interface():
     greeting()
+    game, state = last_game(blackjack)
     while True:
-        game, state = blackjack.new_game()
         while True:
             state = new_round(game)
             if not game.player.blackjack():
                 while state not in model.RESULTS:
+                    print()
                     print(display_game(game))
                     action = demand_action()
                     state = execute(action, game)
                 if state == model.END:
                     break
+                print()
                 print(display_game(game))
                 if state == model.ROUND_WIN:
                     print(round_win())
@@ -158,6 +171,7 @@ def start_interface():
                     print(bust())
                 game.end_round()
             else:
+                print()
                 print(display_game(game))
                 game.blackjack()
                 print(blackjack_win())
@@ -168,19 +182,31 @@ def start_interface():
                 print(loss())
                 break
             print()
-            print(end_round())
+            print(pause())
         if state == model.END:
             print()
             goodbye()
             blackjack.save_games_on_file(DATOTEKA_S_STANJEM)
             break
         print()
-        answer = input('Would you like to play again? ')
-        if answer.lower() == 'no':
+        print(
+            ''''Would you like to play again?'
+            1) YES
+            2) NO'''
+            )
+        answer = input('Answer: ')
+        while answer not in '12':
+            print(bad('FAULTY INPUT'))
+            print()
+            answer = input('Answer: ')
+        if answer == '2':
             blackjack.save_games_on_file(DATOTEKA_S_STANJEM)
             print()
+            print(neutral('Saving game...'))
             goodbye()
             break
+        elif answer == '2':
+            game, state = blackjack.new_game()
 
 def greeting():
     print(neutral(bold('GREETINGS!')))

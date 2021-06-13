@@ -1,5 +1,6 @@
 import random
 import json
+import hashlib
 
 START = 'P'
 END = 'E'
@@ -36,12 +37,6 @@ class Card:
             self.value = 10
         else:
             self.value = 11  # Ace can be worth 1 or 11
-
-    def __str__(self):
-        if self.showing:
-            return f'{self.kind} {self.suit}'
-        else:
-            return '[?]'
 
     def __repr__(self):
         if self.showing:
@@ -116,17 +111,10 @@ class Dealer:
         return dealer
 
 class Player:
-    def __init__(self, name = '1'):
+    def __init__(self):
         self.cards = []
         self.saved_cards = []
         self.money = 1000
-        self.name = name
-
-    def __str__(self):
-        return f'Player {self.name}'
-
-    def __repr__(self):
-        return f'Player({self.name})'
 
     def blackjack(self):
         assert len(self.cards) == 2
@@ -137,13 +125,11 @@ class Player:
             'cards': [card.v_slovar() for card in self.cards],
             'saved_cards': [card.v_slovar() for card in self.saved_cards],
             'money': self.money,
-            'name': self.name,
         }
 
     @staticmethod
     def iz_slovarja(slovar):
-        name = slovar['name']
-        player = Player(name)
+        player = Player()
         player.money = slovar['money']
         for card_slovar in slovar['cards']:
             card = Card.iz_slovarja(card_slovar)
@@ -163,7 +149,7 @@ class Game:
         self.graveyard = Deck('empty')
 
     def __repr__(self):
-        return 'Game()'
+        return f'Game({self.id})'
 
     def bet(self, amount):
         if amount <= self.player.money:
@@ -321,11 +307,6 @@ class Blackjack:
         self.games[id] = (Game(id), START)
         return self.games[id]
 
-    def action(self, game_id, action):
-        game, state = self.games[game_id]
-        state = game.action(action)
-        self.games[game_id] = (game, state)
-
     def v_slovar(self):
         slovar = {}
         for game_id in self.games:
@@ -348,6 +329,6 @@ class Blackjack:
 
     @staticmethod
     def load_games_from_file(file_name):
-        with open(file_name, encoding = 'utf-8') as dat:
+        with open(file_name, 'r', encoding = 'utf-8') as dat:
             slovar = json.load(dat)
         return Blackjack.iz_slovarja(slovar)
