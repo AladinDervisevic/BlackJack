@@ -15,7 +15,7 @@ STAND = 'ST'
 SPLIT = 'SP'
 DOUBLE_DOWN = 'DD'
 BET = 'B'
-MOVES = f'''\nH) Hit
+MOVES = f'''H) Hit
 ST) Stand
 SP) Split
 D) Double down
@@ -339,16 +339,15 @@ class Blackjack:
         for game_id in slovar:
             game_slovar, state = slovar[game_id]
             game = Game.iz_slovarja(game_slovar)
-            blackjack.games[game_id] = (game, state)
+            blackjack.games[int(game_id)] = (game, state)
         return blackjack
 
     def save_games_on_file(self, file_name):
-        with open(file_name, encoding = 'utf-8') as dat:
-            games = self.v_slovar()
-            json.dump(games, dat, indent = 4)
+        with open(file_name, 'w', encoding = 'utf-8') as dat:
+            json.dump(self.v_slovar(), dat, ensure_ascii = False, indent = 4)
 
     @staticmethod
     def load_games_from_file(file_name):
         with open(file_name, encoding = 'utf-8') as dat:
             slovar = json.load(dat)
-            return Blackjack.iz_slovarja(slovar)
+        return Blackjack.iz_slovarja(slovar)
