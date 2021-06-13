@@ -5,13 +5,6 @@ import colorama
 
 colorama.init(autoreset = True)
 
-DATOTEKA_S_STANJEM = 'stanje.json'
-
-try:
-    blackjack = Blackjack.load_games_from_file(DATOTEKA_S_STANJEM)
-except FileNotFoundError:
-    blackjack = Blackjack()
-
 ##################################################################
 # Functions for displaying the game.
 ##################################################################
@@ -36,13 +29,9 @@ def display_cards(cards):
 
 def display_game(game):
     return f'''Dealer's cards: {display_cards(game.dealer.cards)}
-Dealer's balance: {game.dealer.money} $
 LOT: {game.lot} $
 Your cards: {display_cards(game.player.cards)}
 Your balance: {game.player.money} $'''
-
-def win(game):
-    return good(f'YOU HAVE WON WITH END BALANCE {game.player.money} $.')
 
 def loss():
     return bad('YOU ARE OUT OF MONEY, BETTER LUCK NEXT TIME.')
@@ -81,15 +70,6 @@ def demand_action():
         action = input().upper()
     return action
 
-def set_ace_value(game):
-    while True:
-        print(neutral('Set value of ace to 1 or 11? '))
-        value = input()
-        if value == '1' or value == '11':
-            break
-        print(bad('FAULTY INPUT'))
-    return game.set_ace_value(int(value))
-
 ##################################################################
 # Executional functions 
 ##################################################################
@@ -106,19 +86,12 @@ def valid_split(game):
         return False
     return True
 
-def is_ace(card):
-    return card.kind == 'A'
-
 def execute(action, game = None):
     if action == model.BET:
         amount = int(input('How much? '))
         game.bet(amount)
     elif action == model.HIT:
-        state, new_card = game.hit()
-        if is_ace(new_card):
-            print(display_game(game))
-            state = set_ace_value(game)
-        return state
+        return game.hit()
     elif action == model.DOUBLE_DOWN:
         game.double_down()
         return game.end_round()
@@ -134,20 +107,14 @@ def new_round(game):
     print(neutral('NEW ROUND'))
     return game.new_round()
 
-def last_game(blackjack):
-    if blackjack.games == {}:
-        return blackjack.new_game()
-    else:
-        last_game_id = max(blackjack.games)
-        return blackjack.games[last_game_id]
-
 ##################################################################
 # TEXTUAL INTERFACE
 ##################################################################
 
 def start_interface():
     greeting()
-    game, state = last_game(blackjack)
+    blackjack = Blackjack()
+    game, state = blackjack.new_game()
     while True:
         while True:
             state = new_round(game)
@@ -175,10 +142,7 @@ def start_interface():
                 print(display_game(game))
                 game.blackjack()
                 print(blackjack_win())
-            if game.win():
-                print(win(game))
-                break
-            elif game.loss():
+            if game.loss():
                 print(loss())
                 break
             print()
@@ -186,7 +150,6 @@ def start_interface():
         if state == model.END:
             print()
             goodbye()
-            blackjack.save_games_on_file(DATOTEKA_S_STANJEM)
             break
         print()
         print(
@@ -200,9 +163,7 @@ def start_interface():
             print()
             answer = input('Answer: ')
         if answer == '2':
-            blackjack.save_games_on_file(DATOTEKA_S_STANJEM)
             print()
-            print(neutral('Saving game...'))
             goodbye()
             break
         elif answer == '2':

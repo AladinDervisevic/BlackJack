@@ -93,28 +93,25 @@ def hand_value(cards):
 class Dealer:
     def __init__(self):
         self.cards = []
-        self.money = 1000
 
     def v_slovar(self):
         return {
             'cards': [card.v_slovar() for card in self.cards], 
-            'money': self.money,
         }
 
     @staticmethod
     def iz_slovarja(slovar):
         dealer = Dealer()
-        dealer.money = int(slovar['money'])
         for card_slovar in slovar['cards']:
             card = Card.iz_slovarja(card_slovar)
             dealer.cards.append(card)
         return dealer
 
 class Player:
-    def __init__(self):
+    def __init__(self, money = 1000):
         self.cards = []
         self.saved_cards = []
-        self.money = 1000
+        self.money = money
 
     def blackjack(self):
         assert len(self.cards) == 2
@@ -140,8 +137,7 @@ class Player:
         return player
 
 class Game:
-    def __init__(self, id):
-        self.id = id
+    def __init__(self):
         self.deck = Deck()
         self.player = Player()
         self.dealer = Dealer()
@@ -155,12 +151,6 @@ class Game:
         if amount <= self.player.money:
             self.player.money -= amount
             self.lot += amount
-            if amount > self.dealer.money:
-                self.lot += self.dealer.money
-                self.dealer.money = 0
-            else:
-                self.lot += amount
-                self.dealer.money -= amount
             return BET
         else:
             return 'Nimaš dovolj denarja za tolikšno stavo.'
@@ -178,24 +168,21 @@ class Game:
 
     def end_round(self):
         if hand_value(self.dealer.cards) > 21:
-            self.player.money += self.lot
+            self.player.money += (self.lot * 2)
             self.lot = 0
             return ROUND_WIN
         elif hand_value(self.player.cards) > 21:
-            self.dealer.money += self.lot
             self.lot = 0
             return ROUND_LOSS
         if hand_value(self.player.cards) < hand_value(self.dealer.cards):
-            self.dealer.money += self.lot
             self.lot = 0
             return ROUND_LOSS
         elif hand_value(self.player.cards) > hand_value(self.dealer.cards):
-            self.player.money += self.lot
+            self.player.money += (self.lot * 2)
             self.lot = 0
             return ROUND_WIN
         elif hand_value(self.player.cards) == hand_value(self.dealer.cards):
-            self.player.money += (self.lot // 2)
-            self.dealer.money += (self.lot // 2)
+            self.player.money += self.lot
             self.lot = 0
             return TIE
 
@@ -203,21 +190,21 @@ class Game:
         card = random.choice(self.deck.cards)
         self.deck.cards.remove(card)
         self.player.cards.append(card)
+        if card.kind == 'A':
+            self.set_ace_value(card)
         if self.bust():
-            return BUST, card
+            return BUST
         elif double_down:
-            return DOUBLE_DOWN, card
+            return DOUBLE_DOWN
         else:
-            return HIT, card
+            return HIT
 
-    def set_ace_value(self, value):
-        card = self.player.cards[-1]
-        card.value = value
-        return HIT if not self.bust() else BUST
+    def set_ace_value(self, ace):
+        if hand_value(self.player.cards) > 21:
+            ace.value = 1
 
     def double_down(self):
         self.player.money -= self.lot
-        self.dealer.money -= self.lot
         self.lot *= 2
         self.hit(True)
         self.stand()
@@ -252,9 +239,7 @@ class Game:
                 char.cards.append(card)
 
     def new_round(self):
-        self.lot += 20
-        self.dealer.money -= 10
-        self.player.money -= 10
+        self.lot = 0
         self.deal_cards()
         return NEW_ROUND
 
@@ -262,15 +247,11 @@ class Game:
         self.player.money += (self.lot + 100)
         self.lot = 0
 
-    def win(self):
-        return self.dealer.money <= 0
-
     def loss(self):
         return self.player.money <= 0
 
     def v_slovar(self):
         return {
-            'id': self.id,
             'deck': self.deck.v_slovar(),
             'player': self.player.v_slovar(),
             'dealer': self.dealer.v_slovar(),
@@ -280,8 +261,7 @@ class Game:
     
     @staticmethod
     def iz_slovarja(slovar):
-        id = int(slovar['id'])
-        game = Game(id)
+        game = Game()
         game.deck = Deck.iz_slovarja(slovar['deck'])
         game.player = Player.iz_slovarja(slovar['player'])
         game.dealer = Dealer.iz_slovarja(slovar['dealer'])
@@ -291,44 +271,30 @@ class Game:
 
 class Blackjack:
     def __init__(self):
-        self.games = {}
+        self.game = None
+        self.state = None
 
     def __repr__(self):
         return 'Blackjack()'
 
-    def new_id(self):
-        if not self.games:
-            return 0
-        else:
-            return max(self.games) + 1
-
     def new_game(self):
-        id = self.new_id()
-        self.games[id] = (Game(id), START)
-        return self.games[id]
+        return Game(), START
 
-    def v_slovar(self):
-        slovar = {}
-        for game_id in self.games:
-            game, state = self.games[game_id]
-            slovar[f'{game_id}'] = (game.v_slovar(), state)
-        return slovar
+    def v_dvojico(self):
+        return (self.game.v_slovar(), self.state)
 
     @staticmethod
-    def iz_slovarja(slovar):
+    def iz_dvojice(dvojica):
         blackjack = Blackjack()
-        for game_id in slovar:
-            game_slovar, state = slovar[game_id]
-            game = Game.iz_slovarja(game_slovar)
-            blackjack.games[int(game_id)] = (game, state)
+        blackjack.game, blackjack.state = dvojica
         return blackjack
 
-    def save_games_on_file(self, file_name):
-        with open(file_name, 'w', encoding = 'utf-8') as dat:
-            json.dump(self.v_slovar(), dat, ensure_ascii = False, indent = 4)
-
-    @staticmethod
-    def load_games_from_file(file_name):
-        with open(file_name, 'r', encoding = 'utf-8') as dat:
-            slovar = json.load(dat)
-        return Blackjack.iz_slovarja(slovar)
+#    def save_games_on_file(self, file_name):
+#        with open(file_name, 'w', encoding = 'utf-8') as dat:
+#            json.dump(self.v_dvojico(), dat, ensure_ascii = False, indent = 4)
+#
+#    @staticmethod
+#    def load_games_from_file(file_name):
+#        with open(file_name, 'r', encoding = 'utf-8') as dat:
+#            dvojica = json.load(dat)
+#        return Blackjack.iz_dvojice(dvojica)
