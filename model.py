@@ -2,29 +2,10 @@ import random
 import json
 import hashlib
 
-START = 'P'
-END = 'E'
-WIN = 'W'
-LOSS = 'L'
-ROUND_WIN = 'RW'
-ROUND_LOSS = 'RL'
-TIE = 'T'
-BUST = 'BU'
-NEW_ROUND = 'NR'
-HIT = 'H'
-STAND = 'ST'
-SPLIT = 'SP'
-DOUBLE_DOWN = 'DD'
-BET = 'B'
-MOVES = f'''H) Hit
-ST) Stand
-SP) Split
-D) Double down
-B) Bet
-E) End game'''
-
-ACTIONS = [BET, HIT, STAND, SPLIT, DOUBLE_DOWN, END]
-RESULTS = [ROUND_WIN, ROUND_LOSS, TIE, BUST, END]
+BUST = 'bust'
+PLAYER = 'player'
+DEALER = 'dealer'
+PUSH = 'push'
 
 class Card:
     def __init__(self, kind, suit):
@@ -66,22 +47,24 @@ class Card:
         return card
 
 class Deck:
-    def __init__(self, empty = ''):
+    def __init__(self, number_of_decks = 2, empty = False):
         cards = []
         if not empty:
             for kind in [str(i) for i in range(2, 11)] + ['A', 'J', 'Q', 'K']:
                 for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
-                    for _ in range(2):
+                    for _ in range(number_of_decks):
                         cards.append(Card(kind, suit))
             random.shuffle(cards)
         self.cards = cards
 
     def v_slovar(self):
-        return {'cards': [card.v_slovar() for card in self.cards]}
+        return {
+            'cards': [card.v_slovar() for card in self.cards]
+        }
 
     @staticmethod
     def iz_slovarja(slovar):
-        deck = Deck('empty')
+        deck = Deck(empty = True)
         for card_slovar in slovar['cards']:
             card = Card.iz_slovarja(card_slovar)
             deck.cards.append(card)
@@ -142,71 +125,79 @@ class Game:
         self.player = Player()
         self.dealer = Dealer()
         self.lot = 0
-        self.graveyard = Deck('empty')
+        self.graveyard = Deck(empty = True)
 
     def __repr__(self):
         return f'Game({self.id})'
+
+    def reset(self):
+        self.deck = Deck()
+        self.dealer.cards = []
+        self.player.cards = []
+        self.lot = 0
+        self.graveyard = Deck(empty = True)
+
+    def change_number_of_decks(self, number):
+        self.deck = Deck(number_of_decks = number)
+        for cards in [self.dealer.cards, self.player.cards]:
+            for card in cards:
+                self.deck.cards.remove(card)
+        for card in self.graveyard:
+            self.deck.cards.remove(card)
 
     def bet(self, amount):
         if amount <= self.player.money:
             self.player.money -= amount
             self.lot += amount
-            return BET
         else:
-            return 'Nimaš dovolj denarja za tolikšno stavo.'
+            raise ValueError("You don't have enough money.")
+
+    def bust(self, person):
+        return sum(i.value for i in self.person.cards) > 21
+
+    def end_round(self):
+        if self.bust(self.dealer):
+            self.player.money += (self.lot * 2)
+            self.lot = 0
+            return PLAYER
+        elif self.bust(self.player):
+            self.lot = 0
+            return DEALER
+        if hand_value(self.player.cards) < hand_value(self.dealer.cards):
+            self.lot = 0
+            return DEALER
+        elif hand_value(self.player.cards) > hand_value(self.dealer.cards):
+            self.player.money += (self.lot * 2)
+            self.lot = 0
+            return PLAYER
+        elif hand_value(self.player.cards) == hand_value(self.dealer.cards):
+            self.player.money += self.lot
+            self.lot = 0
+            return PUSH
+
+    def hit(self):
+        card = random.choice(self.deck.cards)
+        self.deck.cards.remove(card)
+        self.player.cards.append(card)
+        if card.kind == 'A':
+            self.set_ace_value(self.player, card)
+
+    def set_ace_value(self, person, ace):
+        if hand_value(self.person.cards) > 21:
+            ace.value = 1
 
     def stand(self):
         self.dealer.cards[1].showing = True
         while hand_value(self.dealer.cards) < 17:
             card = random.choice(self.deck.cards)
             self.dealer.cards.append(card)
-            if card.kind == 'A' and hand_value(self.dealer.cards) > 21:
-                card.value = 1
-
-    def bust(self):
-        return sum(i.value for i in self.player.cards) > 21
-
-    def end_round(self):
-        if hand_value(self.dealer.cards) > 21:
-            self.player.money += (self.lot * 2)
-            self.lot = 0
-            return ROUND_WIN
-        elif hand_value(self.player.cards) > 21:
-            self.lot = 0
-            return ROUND_LOSS
-        if hand_value(self.player.cards) < hand_value(self.dealer.cards):
-            self.lot = 0
-            return ROUND_LOSS
-        elif hand_value(self.player.cards) > hand_value(self.dealer.cards):
-            self.player.money += (self.lot * 2)
-            self.lot = 0
-            return ROUND_WIN
-        elif hand_value(self.player.cards) == hand_value(self.dealer.cards):
-            self.player.money += self.lot
-            self.lot = 0
-            return TIE
-
-    def hit(self, double_down = False):
-        card = random.choice(self.deck.cards)
-        self.deck.cards.remove(card)
-        self.player.cards.append(card)
-        if card.kind == 'A':
-            self.set_ace_value(card)
-        if self.bust():
-            return BUST
-        elif double_down:
-            return DOUBLE_DOWN
-        else:
-            return HIT
-
-    def set_ace_value(self, ace):
-        if hand_value(self.player.cards) > 21:
-            ace.value = 1
+            if card.kind == 'A':
+                self.set_ace_value(self.dealer, card)
 
     def double_down(self):
         self.player.money -= self.lot
         self.lot *= 2
-        self.hit(True)
+        self.hit()
         self.stand()
 
     def split(self):
@@ -218,7 +209,7 @@ class Game:
         self.deck.cards.remove(card)
 
     def deal_cards(self):
-        if len(self.deck.cards) < 25:
+        if len(self.deck.cards) < 20:
             self.deck.cards += self.graveyard.cards
             random.shuffle(self.deck.cards)
             self.graveyard.cards = []
@@ -241,14 +232,9 @@ class Game:
     def new_round(self):
         self.lot = 0
         self.deal_cards()
-        return NEW_ROUND
-
-    def blackjack(self):
-        self.player.money += (self.lot + 100)
-        self.lot = 0
 
     def loss(self):
-        return self.player.money <= 0
+        return self.player.money == 0
 
     def v_slovar(self):
         return {
@@ -269,32 +255,73 @@ class Game:
         game.graveyard = Deck.iz_slovarja(slovar['graveyard'])
         return game
 
-class Blackjack:
-    def __init__(self):
-        self.game = None
-        self.state = None
-
-    def __repr__(self):
-        return 'Blackjack()'
-
-    def new_game(self):
-        return Game(), START
-
-    def v_dvojico(self):
-        return (self.game.v_slovar(), self.state)
+class User:
+    def __init__(self, username, encrypted_password, game):
+        self.username = username
+        self.encrypted_password = encrypted_password
+        self.game = game
 
     @staticmethod
-    def iz_dvojice(dvojica):
-        blackjack = Blackjack()
-        blackjack.game, blackjack.state = dvojica
-        return blackjack
+    def login(username, visible_password):
+        user = User.iz_datoteke(username)
+        if user is None:
+            raise ValueError("Username doesn't exist.")
+        elif user.check_password(visible_password):
+            return user
+        else:
+            raise ValueError('Password is incorrent.')
 
-#    def save_games_on_file(self, file_name):
-#        with open(file_name, 'w', encoding = 'utf-8') as dat:
-#            json.dump(self.v_dvojico(), dat, ensure_ascii = False, indent = 4)
-#
-#    @staticmethod
-#    def load_games_from_file(file_name):
-#        with open(file_name, 'r', encoding = 'utf-8') as dat:
-#            dvojica = json.load(dat)
-#        return Blackjack.iz_dvojice(dvojica)
+    @staticmethod
+    def registration(username, visible_password):
+        if User.iz_datoteke(username) is not None:
+            raise ValueError('Username already exists.')
+        else:
+            encrypted_password = User.encryt(visible_password)
+            user = User(username, encrypted_password, Game())
+            user.v_datoteko()
+            return user
+
+    def encryt(visible_password, add = None):
+        if add is None:
+            add = str(random.getrandbits(16))
+        encrypted_password = add + visible_password + add
+        hash = hashlib.blake2b()
+        hash.update(encrypted_password.encode(encoding = 'utf-8'))
+        return f'{add}%{hash.hexdigest()}'
+
+    def check_password(self, visible_password):
+        add, _ = self.encrypted_password.split('%')
+        return self.encrypted_password == User.encryt(visible_password, add)
+
+    @staticmethod
+    def users_filename(username):
+        return f'{username}.json'
+
+    def v_slovar(self):
+        return {
+            'username': self.username,
+            'encrypted_password': self.encrypted_password,
+            'game': self.game,
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        username = slovar['username']
+        encrypted_password = slovar['encrypted_password']
+        game = Game.iz_slovarja(slovar['game'])
+        return User(username, encrypted_password, game)
+
+    def v_datoteko(self):
+        with open(
+            User.users_filename(self.username), 'w', encoding = 'utf-8'
+            ) as dat:
+            json.dump(self.v_slovar(), 'w', ensure_ascii = False, indent = 4)
+
+    @staticmethod
+    def iz_datoteke(username):
+        try:
+            with open(User.users_filename(username)) as dat:
+                slovar = json.load(dat)
+                return User.iz_slovarja(slovar)
+        except FileNotFoundError:
+            return None
