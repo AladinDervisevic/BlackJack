@@ -1,0 +1,29 @@
+% rebase('base.html')
+
+<div class="container">
+    <p>Please fill in this form to create an account.</p>
+    % if mistake != None:
+    <p class='help is-danger'>{{mistake}}</p>
+    % end
+<form action='/registration/' method='POST'>
+    <div class="field">
+        <div class="control has-icons-left">
+            <input class="input is-normal" type="text" name='username' placeholder="username">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+    <div class="field">
+        <div class="control has-icons-left">
+            <input class="input is-normal" type="password" name='password' placeholder="password">
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </div>
+    </div>
+    <div class="field">
+        <button class="button is-success">Sign up</button>
+    </div>
+</form>
+</div>

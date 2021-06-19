@@ -1,0 +1,41 @@
+% rebase('base.html')
+% player, dealer = game.player, game.dealer
+<div class="box">
+    <div>
+        <p>{{dealer.cards}}</p>
+    </div>
+    <div style="margin-top: 0.6cm;">
+        <p>Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
+    </div>
+    <div style="margin-top: 0.6cm;">
+        <p>{{player.cards}}</p>
+    </div>
+    <div>
+        <p>Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
+    </div>
+    % if not player.cards:
+    <div class="field is-grouped" style="margin-top: 0.6cm;">
+        <form action='/bet/' method="POST" class="field is-grouped">
+            <input class="input" type="number" name="amount" placeholder="Amount of money">
+            <button class="button is-normal is-outlined is-primary" style="margin-left: 0.2cm;">Bet</button>
+        </form>
+    </div>
+    % else:
+    <div class="field is-grouped">
+        <form action='/hit/' method="POST" style="margin-right: 0.2cm;">
+            <button class="button is-normal is-outlined is-primary">Hit</button>
+        </form>
+        <form action='/stand/' method="POST" style="margin-right: 0.2cm;">
+            <button class="button is-normal is-outlined is-primary">Stand</button>
+        </form>
+        % if len(player.cards) == 2:
+        <form action='/double_down/' method="POST" style="margin-right: 0.2cm;">
+            <button class="button is-normal is-outlined is-primary">Double down</button>
+        </form>
+        % if len(player.cards) == 2 and player.cards[0].kind == player.cards[1].kind:
+        <form action='/split/' method="POST" style="margin-right: 0.2cm;">
+            <button class="button is-normal is-outlined is-primary">Split</button>
+        </form>
+    % end
+    </div>
+</div>

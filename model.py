@@ -2,10 +2,15 @@ import random
 import json
 import hashlib
 
+DATOTEKA_S_STANJEM = 'stanje.json'
+
+START = 'start'
+NEW_ROUND = 'new round'
 BUST = 'bust'
 PLAYER = 'player'
 DEALER = 'dealer'
 PUSH = 'push'
+RESULTS = [BUST, PLAYER, DEALER, PUSH]
 
 class Card:
     def __init__(self, kind, suit):
@@ -21,10 +26,7 @@ class Card:
 
     def __repr__(self):
         if self.showing:
-            if self.kind in 'A':
-                return f'Card({self.kind} = {self.value}, {self.suit})'
-            else:
-                return f'Card({self.kind}, {self.suit})'
+            return f'Card({self.kind}, {self.suit})'
         else:
             return 'Card(?)'
 
@@ -48,6 +50,7 @@ class Card:
 
 class Deck:
     def __init__(self, number_of_decks = 2, empty = False):
+        self.number_of_decks = number_of_decks
         cards = []
         if not empty:
             for kind in [str(i) for i in range(2, 11)] + ['A', 'J', 'Q', 'K']:
@@ -100,6 +103,12 @@ class Player:
         assert len(self.cards) == 2
         return self.cards[0].value + self.cards[1].value == 21
 
+    def valid_split(self):
+        if len(self.cards) != 2:
+            return False
+        else:
+            return self.cards[0].kind == self.cards[1].kind
+
     def v_slovar(self):
         return {   
             'cards': [card.v_slovar() for card in self.cards],
@@ -126,6 +135,7 @@ class Game:
         self.dealer = Dealer()
         self.lot = 0
         self.graveyard = Deck(empty = True)
+        self.state = START
 
     def __repr__(self):
         return f'Game({self.id})'
@@ -145,7 +155,7 @@ class Game:
         for card in self.graveyard:
             self.deck.cards.remove(card)
 
-    def bet(self, amount):
+    def bet(self, amount:int):
         if amount <= self.player.money:
             self.player.money -= amount
             self.lot += amount
@@ -153,9 +163,17 @@ class Game:
             raise ValueError("You don't have enough money.")
 
     def bust(self, person):
-        return sum(i.value for i in self.person.cards) > 21
+        return sum(i.value for i in person.cards) > 21
 
-    def end_round(self):
+    def end_round(self, blackjack = False):
+        if blackjack:
+            if hand_value(self.dealer.cards) == 21:
+                self.lot = 0
+                return PUSH
+            else:
+                self.player.money += (self.lot * 3)
+                self.lot = 0
+                return PLAYER
         if self.bust(self.dealer):
             self.player.money += (self.lot * 2)
             self.lot = 0
@@ -183,7 +201,7 @@ class Game:
             self.set_ace_value(self.player, card)
 
     def set_ace_value(self, person, ace):
-        if hand_value(self.person.cards) > 21:
+        if hand_value(person.cards) > 21:
             ace.value = 1
 
     def stand(self):
@@ -209,7 +227,9 @@ class Game:
         self.deck.cards.remove(card)
 
     def deal_cards(self):
-        if len(self.deck.cards) < 20:
+        leftover_cards = len(self.deck.cards)
+        total = self.deck.number_of_decks * 52
+        if leftover_cards < (total // 2):
             self.deck.cards += self.graveyard.cards
             random.shuffle(self.deck.cards)
             self.graveyard.cards = []
@@ -228,10 +248,11 @@ class Game:
                     continue
                 self.deck.cards.remove(card)
                 char.cards.append(card)
+        return NEW_ROUND
 
     def new_round(self):
         self.lot = 0
-        self.deal_cards()
+        return NEW_ROUND
 
     def loss(self):
         return self.player.money == 0
@@ -255,73 +276,102 @@ class Game:
         game.graveyard = Deck.iz_slovarja(slovar['graveyard'])
         return game
 
-class User:
-    def __init__(self, username, encrypted_password, game):
-        self.username = username
-        self.encrypted_password = encrypted_password
-        self.game = game
+class Blackjack:
+    def __init__(self):
+        self.games = {}
 
-    @staticmethod
-    def login(username, visible_password):
-        user = User.iz_datoteke(username)
-        if user is None:
-            raise ValueError("Username doesn't exist.")
-        elif user.check_password(visible_password):
-            return user
+    def new_id(self):
+        if not self.games:
+            return 0
         else:
-            raise ValueError('Password is incorrent.')
+            return max(self.games) + 1
 
-    @staticmethod
-    def registration(username, visible_password):
-        if User.iz_datoteke(username) is not None:
-            raise ValueError('Username already exists.')
-        else:
-            encrypted_password = User.encryt(visible_password)
-            user = User(username, encrypted_password, Game())
-            user.v_datoteko()
-            return user
+    def new_game(self):
+        id = self.new_id()
+        self.games[id] = (Game(), START)
+        return id
 
-    def encryt(visible_password, add = None):
-        if add is None:
-            add = str(random.getrandbits(16))
-        encrypted_password = add + visible_password + add
-        hash = hashlib.blake2b()
-        hash.update(encrypted_password.encode(encoding = 'utf-8'))
-        return f'{add}%{hash.hexdigest()}'
+    def save_games(self):
+        games = {}
+        for id in self.games:
+            game, state = self.games[id]
+            games[id] = {'game': game.v_slovar(), 'state': state}
+        with open(DATOTEKA_S_STANJEM, 'w', encoding='utf-8') as dat:
+            json.dump(games, dat, indent=4)
 
-    def check_password(self, visible_password):
-        add, _ = self.encrypted_password.split('%')
-        return self.encrypted_password == User.encryt(visible_password, add)
+    def load_games_from_file(self):
+        with open(DATOTEKA_S_STANJEM, encoding='utf-8') as dat:
+            igre_slovar = json.load(dat)
+        for id in igre_slovar:
+            game = Game.iz_slovarja(igre_slovar[id]['game'])
+            state = igre_slovar[id]['state']
+            self.games[int(id)] = (game, state)
 
-    @staticmethod
-    def users_filename(username):
-        return f'{username}.json'
-
-    def v_slovar(self):
-        return {
-            'username': self.username,
-            'encrypted_password': self.encrypted_password,
-            'game': self.game,
-        }
-
-    @staticmethod
-    def iz_slovarja(slovar):
-        username = slovar['username']
-        encrypted_password = slovar['encrypted_password']
-        game = Game.iz_slovarja(slovar['game'])
-        return User(username, encrypted_password, game)
-
-    def v_datoteko(self):
-        with open(
-            User.users_filename(self.username), 'w', encoding = 'utf-8'
-            ) as dat:
-            json.dump(self.v_slovar(), 'w', ensure_ascii = False, indent = 4)
-
-    @staticmethod
-    def iz_datoteke(username):
-        try:
-            with open(User.users_filename(username)) as dat:
-                slovar = json.load(dat)
-                return User.iz_slovarja(slovar)
-        except FileNotFoundError:
-            return None
+# class User:
+#     def __init__(self, username, encrypted_password, game):
+#         self.username = username
+#         self.encrypted_password = encrypted_password
+#         self.game = game
+# 
+#     @staticmethod
+#     def login(username, visible_password):
+#         user = User.iz_datoteke(username)
+#         if user is None:
+#             raise ValueError("Username doesn't exist.")
+#         elif user.check_password(visible_password):
+#             return user
+#         else:
+#             raise ValueError('Password is incorrent.')
+# 
+#     @staticmethod
+#     def registration(username, visible_password):
+#         if User.iz_datoteke(username) is not None:
+#             raise ValueError('Username already exists.')
+#         else:
+#             encrypted_password = User.encryt(visible_password)
+#             user = User(username, encrypted_password, Game())
+#             user.v_datoteko()
+#             return user
+# 
+#     def encryt(visible_password, add = None):
+#         if add is None:
+#             add = str(random.getrandbits(16))
+#         encrypted_password = add + visible_password + add
+#         hash = hashlib.blake2b()
+#         hash.update(encrypted_password.encode(encoding = 'utf-8'))
+#         return f'{add}%{hash.hexdigest()}'
+# 
+#     def check_password(self, visible_password):
+#         add, _ = self.encrypted_password.split('%')
+#         return self.encrypted_password == User.encryt(visible_password, add)
+# 
+#     def v_slovar(self):
+#         return {
+#             self.username: {
+#                 'username': self.username,
+#                 'encrypted_password': self.encrypted_password,
+#                 'game': self.game.v_slovar(),
+#             }
+#         }
+# 
+#     @staticmethod
+#     def iz_slovarja(slovar):
+#         username = slovar['username']
+#         encrypted_password = slovar['encrypted_password']
+#         game = Game.iz_slovarja(slovar['game'])
+#         return User(username, encrypted_password, game)
+# 
+#     def v_datoteko(self):
+#         with open(
+#             DATOTEKA_S_STANJEM, 'w', encoding = 'utf-8'
+#             ) as dat:
+#             json.dump(self.v_slovar(), dat, ensure_ascii = False, indent = 4)
+# 
+#     @staticmethod
+#     def iz_datoteke(username):
+#         try:
+#             with open(DATOTEKA_S_STANJEM, encoding = 'utf-8') as dat:
+#                 slovar = json.load(dat)
+#             return User.iz_slovarja(slovar[username])
+#         except KeyError:
+#             return None

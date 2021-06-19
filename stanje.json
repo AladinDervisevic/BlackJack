@@ -1,1 +1,3239 @@
-{}
+{
+    "0": {
+        "game": {
+            "deck": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    }
+                ]
+            },
+            "player": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 1
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    }
+                ],
+                "saved_cards": [],
+                "money": 950
+            },
+            "dealer": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    }
+                ]
+            },
+            "lot": 0,
+            "graveyard": {
+                "cards": []
+            }
+        },
+        "state": "start"
+    },
+    "1": {
+        "game": {
+            "deck": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    }
+                ]
+            },
+            "player": {
+                "cards": [],
+                "saved_cards": [],
+                "money": 1000
+            },
+            "dealer": {
+                "cards": []
+            },
+            "lot": 0,
+            "graveyard": {
+                "cards": []
+            }
+        },
+        "state": "start"
+    },
+    "2": {
+        "game": {
+            "deck": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    }
+                ]
+            },
+            "player": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    }
+                ],
+                "saved_cards": [],
+                "money": 950
+            },
+            "dealer": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": false,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    }
+                ]
+            },
+            "lot": 0,
+            "graveyard": {
+                "cards": []
+            }
+        },
+        "state": "start"
+    },
+    "3": {
+        "game": {
+            "deck": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    }
+                ]
+            },
+            "player": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    }
+                ],
+                "saved_cards": [],
+                "money": 950
+            },
+            "dealer": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": false,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    }
+                ]
+            },
+            "lot": 0,
+            "graveyard": {
+                "cards": []
+            }
+        },
+        "state": "start"
+    },
+    "4": {
+        "game": {
+            "deck": {
+                "cards": [
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Clubs",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Pikes",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Hearts",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Pikes",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Clubs",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Clubs",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Hearts",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Diamonds",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Pikes",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Diamonds",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Diamonds",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Hearts",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Diamonds",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "9",
+                        "suit": "Diamonds",
+                        "value": 9
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "6",
+                        "suit": "Pikes",
+                        "value": 6
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Hearts",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Pikes",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Clubs",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Clubs",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Hearts",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "10",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Pikes",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Clubs",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Clubs",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Hearts",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Pikes",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Hearts",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "7",
+                        "suit": "Diamonds",
+                        "value": 7
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Diamonds",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Clubs",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "K",
+                        "suit": "Diamonds",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "4",
+                        "suit": "Pikes",
+                        "value": 4
+                    },
+                    {
+                        "showing": true,
+                        "kind": "5",
+                        "suit": "Hearts",
+                        "value": 5
+                    },
+                    {
+                        "showing": true,
+                        "kind": "Q",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Diamonds",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Hearts",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "A",
+                        "suit": "Clubs",
+                        "value": 11
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Hearts",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    },
+                    {
+                        "showing": true,
+                        "kind": "3",
+                        "suit": "Pikes",
+                        "value": 3
+                    },
+                    {
+                        "showing": true,
+                        "kind": "2",
+                        "suit": "Diamonds",
+                        "value": 2
+                    },
+                    {
+                        "showing": true,
+                        "kind": "J",
+                        "suit": "Pikes",
+                        "value": 10
+                    },
+                    {
+                        "showing": true,
+                        "kind": "8",
+                        "suit": "Clubs",
+                        "value": 8
+                    }
+                ]
+            },
+            "player": {
+                "cards": [],
+                "saved_cards": [],
+                "money": 1000
+            },
+            "dealer": {
+                "cards": []
+            },
+            "lot": 0,
+            "graveyard": {
+                "cards": []
+            }
+        },
+        "state": "start"
+    }
+}
