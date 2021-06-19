@@ -17,6 +17,7 @@ class Card:
         self.showing = True
         self.kind = kind
         self.suit = suit
+        self.name = f'{self.kind}' + self.suit[0]
         if kind in list(str(i) for i in range(2, 11)):
             self.value = int(kind)
         elif kind in 'JQK':
@@ -72,9 +73,6 @@ class Deck:
             card = Card.iz_slovarja(card_slovar)
             deck.cards.append(card)
         return deck
-
-def hand_value(cards):
-    return sum(card.value for card in cards)
 
 class Dealer:
     def __init__(self):
@@ -140,6 +138,12 @@ class Game:
     def __repr__(self):
         return f'Game({self.id})'
 
+    def hand_value(self, person):
+        if person == self.dealer and not person.cards[1].showing:
+            return person.cards[0].value
+        else:
+            return sum(card.value for card in person.cards)
+
     def reset(self):
         self.deck = Deck()
         self.dealer.cards = []
@@ -167,7 +171,7 @@ class Game:
 
     def end_round(self, blackjack = False):
         if blackjack:
-            if hand_value(self.dealer.cards) == 21:
+            if self.hand_value(self.dealer) == 21:
                 self.lot = 0
                 return PUSH
             else:
@@ -181,14 +185,14 @@ class Game:
         elif self.bust(self.player):
             self.lot = 0
             return DEALER
-        if hand_value(self.player.cards) < hand_value(self.dealer.cards):
+        if self.hand_value(self.player) < self.hand_value(self.dealer):
             self.lot = 0
             return DEALER
-        elif hand_value(self.player.cards) > hand_value(self.dealer.cards):
+        elif self.hand_value(self.player) > self.hand_value(self.dealer):
             self.player.money += (self.lot * 2)
             self.lot = 0
             return PLAYER
-        elif hand_value(self.player.cards) == hand_value(self.dealer.cards):
+        elif self.hand_value(self.player) == self.hand_value(self.dealer):
             self.player.money += self.lot
             self.lot = 0
             return PUSH
@@ -201,12 +205,12 @@ class Game:
             self.set_ace_value(self.player, card)
 
     def set_ace_value(self, person, ace):
-        if hand_value(person.cards) > 21:
+        if self.hand_value(person) > 21:
             ace.value = 1
 
     def stand(self):
         self.dealer.cards[1].showing = True
-        while hand_value(self.dealer.cards) < 17:
+        while self.hand_value(self.dealer) < 17:
             card = random.choice(self.deck.cards)
             self.dealer.cards.append(card)
             if card.kind == 'A':

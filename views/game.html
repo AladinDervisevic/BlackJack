@@ -1,16 +1,35 @@
 % rebase('base.html')
 % player, dealer = game.player, game.dealer
+
 <div class="box">
-    <div>
-        <p>{{dealer.cards}}</p>
-    </div>
-    <div style="margin-top: 0.6cm;">
+    % if dealer.cards:
+    <p>Dealer's cards, value = {{game.hand_value(dealer)}}
+        <div class='field is-grouped'>
+        % for card in dealer.cards:
+            % if card.showing:
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+            % else:
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/Gray_back.jpg"  alt='Card(?)'>
+            % end
+        % end
+        </div>
+    </p>
+    <div style="margin-block: 1cm;">
         <p>Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
     </div>
-    <div style="margin-top: 0.6cm;">
-        <p>{{player.cards}}</p>
-    </div>
-    <div>
+    % else:
+    <p>Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
+    % end
+    % if player.cards:
+    <p>Your cards, value = {{game.hand_value(player)}}
+        <div class="field is-grouped">
+            % for card in player.cards:
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+            % end
+        </div>
+    </p>
+    % end
+    <div style="margin-block: 0.5cm;">
         <p>Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
     </div>
     % if not player.cards:

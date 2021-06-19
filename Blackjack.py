@@ -93,6 +93,7 @@ def game():
     game, state = current_game()
     if state == START:
         state = game.new_round()
+        blackjack.save_games()
     return bottle.template('game', game = game, winner = None)
 
 #####################################################################
@@ -168,6 +169,14 @@ def stand():
 def end_round(winner):
     game, _ = current_game()
     return bottle.template('game.html', game = game, winner = winner)
+
+#####################################################################
+# Media
+#####################################################################
+
+@bottle.get('/img/<picture>')
+def show_picture(picture):
+    return bottle.static_file(picture, root='img/')
 
 #####################################################################
 #####################################################################
