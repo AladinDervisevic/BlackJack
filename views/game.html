@@ -15,10 +15,10 @@
         </div>
     </p>
     <div style="margin-block: 1cm;">
-        <p>Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
+        <p class="has-text-success-dark">Lot: {{game.lot}} $</p>
     </div>
     % else:
-    <p>Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
+    <p class="has-text-success-dark">Lot: {{game.lot}} <bold style="color: green;">$</bold></p>
     % end
     % if player.cards:
     <p>Your cards, value = {{game.hand_value(player)}}
@@ -30,30 +30,40 @@
     </p>
     % end
     <div style="margin-block: 0.5cm;">
-        <p>Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
+        <p class="has-text-success-dark">Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
     </div>
     % if not player.cards:
     <div class="field is-grouped" style="margin-top: 0.6cm;">
         <form action='/bet/' method="POST" class="field is-grouped">
             <input class="input" type="number" name="amount" placeholder="Amount of money">
-            <button class="button is-normal is-outlined is-primary" style="margin-left: 0.2cm;">Bet</button>
+            <button class="button is-outlined is-primary" style="margin-left: 0.2cm;">
+                <span class="icon is-small">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span>Bet</span>
+            </button>
         </form>
     </div>
+        % if mistake == "invalid literal for int() with base 10: ''":
+        <p class='help is-danger'>You have to put in an amount!</p>
+        % elif mistake != None:
+        <p class='help is-danger'>{{mistake}}</p>
+        % end
     % else:
     <div class="field is-grouped">
         <form action='/hit/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-normal is-outlined is-primary">Hit</button>
+            <button class="button is-outlined is-primary">Hit</button>
         </form>
         <form action='/stand/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-normal is-outlined is-primary">Stand</button>
+            <button class="button is-outlined is-primary">Stand</button>
         </form>
         % if len(player.cards) == 2:
         <form action='/double_down/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-normal is-outlined is-primary">Double down</button>
+            <button class="button is-outlined is-primary">Double down</button>
         </form>
         % if len(player.cards) == 2 and player.cards[0].kind == player.cards[1].kind:
         <form action='/split/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-normal is-outlined is-primary">Split</button>
+            <button class="button is-outlined is-primary">Split</button>
         </form>
     % end
     </div>

@@ -160,11 +160,13 @@ class Game:
             self.deck.cards.remove(card)
 
     def bet(self, amount:int):
-        if amount <= self.player.money:
+        if amount <= 0:
+            raise ValueError('You cannot bet non-positive amounts!')
+        elif amount > self.player.money:
+            raise ValueError("You don't have enough money for such a bet.")
+        else:
             self.player.money -= amount
             self.lot += amount
-        else:
-            raise ValueError("You don't have enough money.")
 
     def bust(self, person):
         return sum(i.value for i in person.cards) > 21

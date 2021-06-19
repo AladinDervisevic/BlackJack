@@ -94,7 +94,7 @@ def game():
     if state == START:
         state = game.new_round()
         blackjack.save_games()
-    return bottle.template('game', game = game, winner = None)
+    return bottle.template('game.html', game = game, mistake = None)
 
 #####################################################################
 # Settings
@@ -126,10 +126,13 @@ def go_back_from_settings():
 def bet():
     game, state = current_game()
     amount = bottle.request.forms['amount']
-    game.bet(int(amount))
-    state = game.deal_cards()
-    blackjack.save_games()
-    return bottle.redirect('/game/')
+    try:
+        game.bet(int(amount))
+        state = game.deal_cards()
+        blackjack.save_games()
+        return bottle.redirect('/game/')
+    except ValueError as e:
+        return bottle.template('game.html', game = game, mistake = e.args[0])
 
 @bottle.post('/hit/')
 def hit():
@@ -168,7 +171,7 @@ def stand():
 @bottle.get('/end_round/<winner>')
 def end_round(winner):
     game, _ = current_game()
-    return bottle.template('game.html', game = game, winner = winner)
+    return bottle.template('end_round.html', game = game, winner = winner)
 
 #####################################################################
 # Media
