@@ -1,6 +1,6 @@
 # from model import User
 import model
-from model import BUST, PLAYER, DEALER, PUSH, START, NEW_ROUND
+from model import PLAYER, DEALER, PUSH
 import bottle
 
 COOKIE_USERNAME = 'username'
@@ -13,10 +13,9 @@ blackjack.load_games_from_file()
 # Pomožne funkcije
 #####################################################################
 
-def current_game():
+def current_game_id():
     id = bottle.request.get_cookie('game_id', secret=SECRET)
-    game, state = blackjack.games[id]
-    return (game, state)
+    return id
 
 #####################################################################
 # Signing in & signing up
@@ -81,20 +80,39 @@ def current_game():
 def start():
     return bottle.template('start.html')
 
-@bottle.post('/play/')
+@bottle.post('/new_game/')
 def play():
     id = blackjack.new_game()
+    game, _ = blackjack.games[id]
+    state = game.new_round()
+    blackjack.games[id] = (game, state)
     blackjack.save_games()
     bottle.response.set_cookie('game_id', id, path='/', secret=SECRET)
+    bottle.redirect('/game/')
+
+@bottle.post('/resume/')
+def resume():
     return bottle.redirect('/game/')
 
 @bottle.get('/game/')
 def game():
-    game, state = current_game()
-    if state == START:
-        state = game.new_round()
-        blackjack.save_games()
-    return bottle.template('game.html', game = game, mistake = None)
+    id = current_game_id()
+    game, state = blackjack.games[id]
+    if not game.player.money and not game.lot:
+        return bottle.template('end.html')
+    else:
+        return bottle.template(
+            'game.html', game = game, mistake = None, state = state
+        )
+
+@bottle.post('/new_round/')
+def new_round():
+    id = current_game_id()
+    game, _ = blackjack.games[id]
+    state = game.new_round()
+    blackjack.games[id] = (game, state)
+    blackjack.save_games()
+    bottle.redirect('/game/')
 
 #####################################################################
 # Settings
@@ -102,14 +120,16 @@ def game():
 
 @bottle.get('/settings/')
 def settings():
-    game, _ = current_game()
-    num = game.deck.number_of_decks
-    return bottle.template('settings.html', number_of_decks = num)
+    id = current_game_id()
+    game, _ = blackjack.games[id]
+    number = game.deck.number_of_decks
+    return bottle.template('settings.html', number_of_decks = number)
 
 @bottle.post('/number_of_decks/')
 def number_of_decks():
     number = bottle.request.forms['number_of_decks']
-    game, _ = current_game()
+    id = current_game_id()
+    game, _ = blackjack.games[id]
     game.deck.change_number_of_decks(number)
     blackjack.save_games()
     return bottle.redirect('/settings/')
@@ -124,54 +144,62 @@ def go_back_from_settings():
 
 @bottle.post('/bet/')
 def bet():
-    game, state = current_game()
+    id = current_game_id()
+    game, _ = blackjack.games[id]
     amount = bottle.request.forms['amount']
     try:
         game.bet(int(amount))
-        state = game.deal_cards()
+        game.deal_cards()
         blackjack.save_games()
         return bottle.redirect('/game/')
     except ValueError as e:
-        return bottle.template('game.html', game = game, mistake = e.args[0])
+        return bottle.template(
+            'game.html', game = game, mistake = e.args[0], state = None
+        )
 
 @bottle.post('/hit/')
 def hit():
-    game, _ = current_game()
+    id = current_game_id()
+    game, state = blackjack.games[id]
     game.hit()
     if game.bust(game.player):
-        state, winner = BUST, DEALER
-        blackjack.save_games()
-        return bottle.redirect('/end_round/<winner>')
-    else:
-        blackjack.save_games()
-        return bottle.redirect('/game/')
+        state = DEALER
+    blackjack.games[id] = (game, state)
+    blackjack.save_games()
+    return bottle.redirect('/game/')
 
-@bottle.post('double_down')
+@bottle.post('/double_down/')
 def double_down():
-    game, _ = current_game()
+    id = current_game_id()
+    game, state = blackjack.games[id]
     game.double_down()
+    if game.bust(game.player):
+        state = DEALER
+    elif game.bust(game.dealer):
+        state = PLAYER
+    else:
+        state = PUSH
+    blackjack.games[id] = (game, state)
     blackjack.save_games()
     return bottle.redirect('/game/')
 
 @bottle.post('/split/')
 def split():
-    game, _ = current_game()
+    id = current_game_id()
+    game, _ = blackjack.games[id]
     game.split()
     blackjack.save_games()
     return bottle.redirect('/game/')
 
 @bottle.post('/stand/')
 def stand():
-    game, _ = current_game()
+    id = current_game_id()
+    game, state = blackjack.games[id]
     game.stand()
-    winner = game.end_round()
+    state = game.end_round()
+    blackjack.games[id] = (game, state)
     blackjack.save_games()
-    return bottle.redirect('/end_round/<winner>')
-
-@bottle.get('/end_round/<winner>')
-def end_round(winner):
-    game, _ = current_game()
-    return bottle.template('end_round.html', game = game, winner = winner)
+    return bottle.redirect('/game/')
 
 #####################################################################
 # Media

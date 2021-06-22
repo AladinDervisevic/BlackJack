@@ -6,11 +6,13 @@ DATOTEKA_S_STANJEM = 'stanje.json'
 
 START = 'start'
 NEW_ROUND = 'new round'
-BUST = 'bust'
 PLAYER = 'player'
 DEALER = 'dealer'
 PUSH = 'push'
-RESULTS = [BUST, PLAYER, DEALER, PUSH]
+BLACKJACK = 'blackjack'
+
+number_kinds = [str(i) for i in range(2, 11)]
+special_kinds = ['A', 'K', 'Q', 'J']
 
 class Card:
     def __init__(self, kind, suit):
@@ -18,7 +20,7 @@ class Card:
         self.kind = kind
         self.suit = suit
         self.name = f'{self.kind}' + self.suit[0]
-        if kind in list(str(i) for i in range(2, 11)):
+        if kind in number_kinds:
             self.value = int(kind)
         elif kind in 'JQK':
             self.value = 10
@@ -54,7 +56,7 @@ class Deck:
         self.number_of_decks = number_of_decks
         cards = []
         if not empty:
-            for kind in [str(i) for i in range(2, 11)] + ['A', 'J', 'Q', 'K']:
+            for kind in number_kinds + special_kinds:
                 for suit in ['Hearts', 'Diamonds', 'Clubs', 'Pikes']:
                     for _ in range(number_of_decks):
                         cards.append(Card(kind, suit))
@@ -98,8 +100,10 @@ class Player:
         self.money = money
 
     def blackjack(self):
-        assert len(self.cards) == 2
-        return self.cards[0].value + self.cards[1].value == 21
+        if len(self.cards) == 2:
+            return self.cards[0].value + self.cards[1].value == 21
+        else:
+            return False
 
     def valid_split(self):
         if len(self.cards) != 2:
@@ -133,7 +137,6 @@ class Game:
         self.dealer = Dealer()
         self.lot = 0
         self.graveyard = Deck(empty = True)
-        self.state = START
 
     def __repr__(self):
         return f'Game({self.id})'
@@ -143,13 +146,6 @@ class Game:
             return person.cards[0].value
         else:
             return sum(card.value for card in person.cards)
-
-    def reset(self):
-        self.deck = Deck()
-        self.dealer.cards = []
-        self.player.cards = []
-        self.lot = 0
-        self.graveyard = Deck(empty = True)
 
     def change_number_of_decks(self, number):
         self.deck = Deck(number_of_decks = number)
@@ -171,15 +167,16 @@ class Game:
     def bust(self, person):
         return sum(i.value for i in person.cards) > 21
 
-    def end_round(self, blackjack = False):
-        if blackjack:
+    def end_round(self):
+        if self.player.blackjack():
             if self.hand_value(self.dealer) == 21:
+                self.player.money += self.lot
                 self.lot = 0
                 return PUSH
             else:
                 self.player.money += (self.lot * 3)
                 self.lot = 0
-                return PLAYER
+                return BLACKJACK
         if self.bust(self.dealer):
             self.player.money += (self.lot * 2)
             self.lot = 0
@@ -239,12 +236,8 @@ class Game:
             self.deck.cards += self.graveyard.cards
             random.shuffle(self.deck.cards)
             self.graveyard.cards = []
-        if self.player.cards:  #if players currently hold some cards
-            self.graveyard.cards += self.dealer.cards
-            self.graveyard.cards += self.player.cards
-            self.dealer.cards = []
-            self.player.cards = [] + self.player.saved_cards
-            self.player.saved_cards = []
+        self.player.cards = [] + self.player.saved_cards
+        self.player.saved_cards = []
         for char in [self.player, self.dealer]:
             for i in range(2):
                 card = random.choice(self.deck.cards)
@@ -254,10 +247,12 @@ class Game:
                     continue
                 self.deck.cards.remove(card)
                 char.cards.append(card)
-        return NEW_ROUND
 
     def new_round(self):
         self.lot = 0
+        for char in [self.player, self.dealer]:
+            self.graveyard.cards += char.cards
+            char.cards = []
         return NEW_ROUND
 
     def loss(self):

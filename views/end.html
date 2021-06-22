@@ -1,0 +1,13 @@
+% rebase('base.html')
+
+<div class="box has-text-centered">
+    <h1 class="title has-text-weight-normal">Would you like to play again?</h1>
+    <div class="field is-grouped is-grouped-centered">
+        <form action='/new_game/' method="POST">
+            <button class="button is-success is-outlined is-normal" style="margin-right: 0.2cm;">Yes</button>
+        </form>
+        <form action='/' method="GET">
+            <button class="button is-danger is-outlined is-normal">No</button>
+        </form>
+    </div>
+</div>
