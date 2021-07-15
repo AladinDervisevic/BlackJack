@@ -154,12 +154,21 @@
                     Stand
                 </button>
             </form>
+            % if game.valid_double_down():
             <form action='/double_down/' method="POST" 
             style="margin-right: 0.2cm;">
                 <button class="button is-outlined is-primary">
                     Double down
                 </button>
             </form>
+            % else:
+            <form action='/double_down/' method="POST" 
+            style="margin-right: 0.2cm;">
+                <button class="button is-outlined is-primary"  disabled>
+                    Double down
+                </button>
+            </form>
+            % end
             % if game.player.valid_split():
             <form action='/split/' method="POST" style="margin-right: 0.2cm;">
                 <button class="button is-outlined is-primary">

@@ -1,5 +1,5 @@
+from model import END
 from model import User
-from model import DEALER, END
 import bottle
 
 COOKIE_USERNAME = 'username'
@@ -141,17 +141,13 @@ def settings():
 @bottle.post('/number_of_decks/')
 def number_of_decks():
     user = current_user()
-    number = bottle.request.forms['number_of_decks']
+    number = int(bottle.request.forms['number_of_decks'])
     user.blackjack.number_of_decks = number
     id = current_game_id()
     if id is not None:
         game = user.blackjack.games[id][0]
         game.change_number_of_decks(number)
     user.save_file()
-    return bottle.redirect('/settings/')
-
-@bottle.get('/back_from_settings/')
-def go_back_from_settings():
     return bottle.redirect('/main_menu/')
 
 #####################################################################

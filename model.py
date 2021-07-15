@@ -152,14 +152,10 @@ class Game:
 
     def change_number_of_decks(self, number):
         self.number_of_decks = number
-        self.deck = Deck(self.number_of_decks)
-        for cards in [self.dealer.cards, self.player.cards]:
-            for card in cards:
-                self.deck.cards.remove(card)
-        for card in self.player.saved_cards:
-            self.deck.cards.remove(card)
-        for card in self.graveyard:
-            self.deck.cards.remove(card)
+        self.deck = Deck(number)
+        self.dealer.cards = []
+        self.player.cards = []
+        self.player.saved_cards = []
 
     def bet(self, amount:int):
         if amount <= 0:
@@ -227,6 +223,9 @@ class Game:
         self.hit()
         self.stand()
         return self.end_round()
+
+    def valid_double_down(self):
+        return self.player.money >= self.lot
 
     def split(self):
         card = self.player.cards[1]
