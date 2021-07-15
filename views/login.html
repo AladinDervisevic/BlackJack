@@ -1,7 +1,7 @@
 % rebase('base.html')
 
 <p class="has-text-primary">Please fill in the form to sign in.</p>
-<div class="box">
+<div class="box" style="margin-bottom: 0.3cm; margin-top: 0.1cm;">
     % if mistake != None:
     <p class='help is-danger' style="margin-bottom: 0.1cm;">{{mistake}}</p>
     % end
@@ -27,13 +27,13 @@
     <div class="field is-grouped" style="margin-block: 0.2cm;">
         <button class="button is-success">Sign in</button>
     </form>
-        <div style="margin-left: 8.15cm;">
-            <form action='/registration/' method='GET'>
-                Don't have an account? 
-                <button class='button is-small'>
-                    Sign up
-                </button>
-            </form>
-        </div>
     </div>
+</div>
+<div class="has-text-primary">
+    <form action='/registration/' method='GET'>
+        Don't have an account? 
+        <button class='button is-small'>
+            Sign up
+        </button>
+    </form>
 </div>

@@ -187,6 +187,18 @@ def bet():
             'game.html', game = game, mistake = e.args[0], state = None
         )
 
+@bottle.post('/all_in/')
+def all_in():
+    user = current_user()
+    blackjack = user.blackjack
+    id = current_game_id()
+    game, _ = blackjack.games[id]
+    amount = game.player.money
+    game.bet(amount)
+    game.deal_cards()
+    user.save_file()
+    return bottle.redirect('/game/')
+
 @bottle.post('/hit/')
 def hit():
     user = current_user()
