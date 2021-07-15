@@ -1,12 +1,13 @@
 % rebase('base.html')
 % player, dealer = game.player, game.dealer
 
-% if state in ['push', 'player', 'dealer', 'blackjack']:
+% if state in ['push', 'player', 'dealer', 'blackjack', 'end']:
 <div class="box">
     <p>Dealer's cards, value = {{game.hand_value(dealer)}}
         <div class='field is-grouped'>
             % for card in dealer.cards:
-            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" 
+            src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
             % end
         </div>
     </p>
@@ -14,39 +15,77 @@
         <p class="has-text-success-dark">Lot: {{game.lot}} $</p>
     </div>
     <div style="margin-bottom: 0.6cm;">
-        <p class="has-text-success-dark">Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
+        <p class="has-text-success-dark">Your balance: {{player.money}} 
+            <bold style="color: green;">$</bold>
+        </p>
     </div>
     <p>Your cards, value = {{game.hand_value(player)}}
         <div class="field is-grouped">
             % for card in player.cards:
-            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" 
+            src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
             % end
         </div>
     </p>
     <div class="field is-grouped" style="margin-top: 0.2cm;">
         <form action='/hit/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-outlined is-primary" disabled>Hit</button>
+            <button class="button is-outlined is-primary" disabled>
+                Hit
+            </button>
         </form>
         <form action='/stand/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-outlined is-primary" disabled>Stand</button>
+            <button class="button is-outlined is-primary" disabled>
+                Stand
+            </button>
         </form>
-        <form action='/double_down/' method="POST" style="margin-right: 0.2cm;">
-            <button class="button is-outlined is-primary" disabled>Double down</button>
+        <form action='/double_down/' method="POST" 
+        style="margin-right: 0.2cm;">
+            <button class="button is-outlined is-primary" disabled>
+                Double down
+            </button>
         </form>
     </div>
-    <div class="box">
+    <div class="box has-text-centered has-text-weight-normal">
         % if state == 'player':
-        <h1 class='title has-text-success'>Congrats, you have won the round.</h1>
+        <h1 class='title has-text-success'>
+            Congrats, you have won the round.
+        </h1>
         % elif state == 'blackjack':
-        <h1 class='title has-text-success'>Congrats, you have won with a Blackjack.</h1>
+        <h1 class='title has-text-success'>
+            Congrats, you have won with a Blackjack.
+        </h1>
         % elif state == 'dealer':
-        <h1 class='title has-text-danger'>You have lost the round, too bad.</h1>
+        <h1 class='title has-text-danger'>
+            You have lost the round, too bad.
+        </h1>
         % elif state == 'push':
         <h1 class='title has-text-warning'>It's a push.</h1>
+        % elif state == 'end':
+        <h1 class="title has-text-danger">
+            You're out of money, better luck next time.
+        </h1>
+        <h1 class="title">Would you like to play again?</h1>
+        <div class="field is-grouped is-grouped-centered">
+            <form action='/new_game/' method="POST">
+                <button class="button is-success is-outlined is-normal" 
+                style="margin-right: 0.2cm;">
+                    Yes
+                </button>
+            </form>
+            <form action='/main_menu/' method="GET">
+                <button class="button is-danger is-outlined is-normal">
+                    No
+                </button>
+            </form>
+        </div>
         % end
+        % if state != 'end':
         <form action='/new_round/' method="POST">
-            <button class="button is-outlined is-primary">Continue</button>
+            <button class="button is-outlined is-primary">
+                Continue
+            </button>
         </form>
+        % end
     </div>
 </div>
 % else:
@@ -56,9 +95,11 @@
             <div class='field is-grouped'>
             % for card in dealer.cards:
                 % if card.showing:
-                <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+                <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" 
+                src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
                 % else:
-                <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/Gray_back.jpg"  alt='Card(?)'>
+                <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" 
+                src="/img/Gray_back.jpg"  alt='Card(?)'>
                 % end
             % end
             </div>
@@ -68,13 +109,16 @@
         <p class="has-text-success-dark">Lot: {{game.lot}} $</p>
     </div>
     <div style="margin-bottom: 0.6cm;">
-        <p class="has-text-success-dark">Your balance: {{player.money}} <bold style="color: green;">$</bold></p>
+        <p class="has-text-success-dark">Your balance: {{player.money}} 
+            <bold style="color: green;">$</bold>
+        </p>
     </div>
     % if player.cards:
     <p>Your cards, value = {{game.hand_value(player)}}
         <div class="field is-grouped">
             % for card in player.cards:
-            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
+            <img style="width: 2.5cm; height: 4cm; margin-right: 0.2cm;" 
+            src="/img/{{card.name}}.jpg" alt='{{card.name}}'>
             % end
         </div>
     </p>
@@ -82,29 +126,45 @@
         <p class="has-text-success">You got a Blackjack!</p>
         <div class="field is-grouped" style="margin-top: 0.2cm;">
             <form action='/hit/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary" disabled>Hit</button>
+                <button class="button is-outlined is-primary" disabled>
+                    Hit
+                </button>
             </form>
             <form action='/stand/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary">Stand</button>
+                <button class="button is-outlined is-primary">
+                    Stand
+                </button>
             </form>
-            <form action='/double_down/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary" disabled>Double down</button>
+            <form action='/double_down/' method="POST" 
+            style="margin-right: 0.2cm;">
+                <button class="button is-outlined is-primary" disabled>
+                    Double down
+                </button>
             </form>
         </div>
         % else:
         <div class="field is-grouped" style="margin-top: 0.2cm;">
             <form action='/hit/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary">Hit</button>
+                <button class="button is-outlined is-primary">
+                    Hit
+                </button>
             </form>
             <form action='/stand/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary">Stand</button>
+                <button class="button is-outlined is-primary">
+                    Stand
+                </button>
             </form>
-            <form action='/double_down/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary">Double down</button>
+            <form action='/double_down/' method="POST" 
+            style="margin-right: 0.2cm;">
+                <button class="button is-outlined is-primary">
+                    Double down
+                </button>
             </form>
-            % if len(player.cards) == 2 and player.cards[0].kind == player.cards[1].kind:
+            % if game.player.valid_split():
             <form action='/split/' method="POST" style="margin-right: 0.2cm;">
-                <button class="button is-outlined is-primary">Split</button>
+                <button class="button is-outlined is-primary">
+                    Split
+                </button>
             </form>
             % end
         </div>
@@ -112,8 +172,10 @@
     % else:
     <div class="field is-grouped" style="margin-top: 0.6cm;">
         <form action='/bet/' method="POST" class="field is-grouped">
-            <input class="input" type="number" name="amount" placeholder="Amount of money">
-            <button class="button is-outlined is-primary" style="margin-left: 0.2cm;">
+            <input class="input" type="number" name="amount" 
+            placeholder="Amount of money">
+            <button class="button is-outlined is-primary" 
+            style="margin-left: 0.2cm;">
                 <span class="icon is-small">
                     <i class="fas fa-check"></i>
                 </span>

@@ -1,0 +1,61 @@
+% rebase('base.html')
+% high_score = blackjack.high_score
+
+<div style="margin-bottom: 0.6cm;">
+    <form action = '/logout/' method="POST">
+        <button class='button is-small is-primary is-outlined'>
+            Sign out
+        </button>
+    </form>
+</div>
+<div class="box">
+<div class="field is-grouped is-grouped-centered">
+    % if not blackjack.games:
+    <form action='/resume/' method="POST">
+        <button class='button is-medium is-outlined is-primary' 
+        style="margin-right: 0.6cm;" disabled>
+            Resume
+        </button>
+    </form>
+    % else:
+        % state = blackjack.games[max(blackjack.games)][1]
+        % if state == 'end':
+        <form action='/resume/' method="POST">
+            <button class='button is-medium is-outlined is-primary' 
+            style="margin-right: 0.6cm;" disabled>
+                Resume
+            </button>
+        </form>
+        % else:
+        <form action='/resume/' method="POST">
+            <button class='button is-medium is-outlined is-primary' 
+            style="margin-right: 0.6cm;">
+                Resume
+            </button>
+        </form>
+        % end
+    % end
+    <form action='/new_game/' method="POST">
+        <button class='button is-medium is-outlined is-primary' 
+        style="margin-right: 0.6cm;">
+            New game
+        </button>
+    </form>
+    <form action='/settings/' method="GET">
+        <button class='button is-medium is-outlined is-primary'
+        style="margin-right: 0.6cm;">
+            Settings
+        </button>
+    </form>
+    <form action='/about/' method="GET">
+        <button class='button is-medium is-outlined is-primary'>
+            About
+        </button>
+    </form>
+</div>
+<p class="has-text-primary has-text-centered">
+    High score: <bold class="has-text-success-dark">
+        {{blackjack.high_score}} $
+    </bold>
+</p>
+</div>

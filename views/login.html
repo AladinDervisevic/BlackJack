@@ -1,31 +1,39 @@
 % rebase('base.html')
 
-% if mistake != None:
-<p class='help is-danger'>{{mistake}}</p>
-% end
-<form action='/login/' method="POST">
-<div class="field">
-    <div class="control has-icons-left">
-        <input class="input is-normal" type="text" name='username' placeholder="username">
-        <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-        </span>
+<p class="has-text-primary">Please fill in the form to sign in.</p>
+<div class="box">
+    % if mistake != None:
+    <p class='help is-danger' style="margin-bottom: 0.1cm;">{{mistake}}</p>
+    % end
+    <form action="/login/" method="POST">
+    <div class="field">
+        <div class="control has-icons-left">
+            <input class="input is-normal" type="text" name='username' 
+            placeholder="username">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
     </div>
-</div>
-<div class="field">
-    <div class="control has-icons-left">
-        <input class="input is-normal" type="password" name='password' placeholder="password">
-        <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
-        </span>
+    <div class="field">
+        <div class="control has-icons-left">
+            <input class="input is-normal" type="password" name='password' 
+            placeholder="password">
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </div>
     </div>
-</div>
-<div class='field'>
-    <button class="button is-success">Sign in</button>
-</div>
-</form>
-<div class='field'>
-    <form action='/registration/' method='GET'>
-        Don't have an account? <button class='is-text is-small'>Sign up</button>
+    <div class="field is-grouped" style="margin-block: 0.2cm;">
+        <button class="button is-success">Sign in</button>
     </form>
+        <div style="margin-left: 8.15cm;">
+            <form action='/registration/' method='GET'>
+                Don't have an account? 
+                <button class='button is-small'>
+                    Sign up
+                </button>
+            </form>
+        </div>
+    </div>
 </div>

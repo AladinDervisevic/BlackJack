@@ -2,41 +2,68 @@
 
 <div style="margin-bottom: 0.6cm;">
     <form action = '/back_from_settings/' method="GET">
-        <button class='button is-small is-primary is-outlined'>Back</button>
+        <button class='button is-small is-primary is-outlined'>
+            Back
+        </button>
     </form>
 </div>
 <div class="box">
     <form action='/number_of_decks/' method="POST">Number of decks: 
         % if number_of_decks == 1:
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="1" checked='checked'> 1
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="2"> 2
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="4"> 4
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="6"> 6
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="8"> 8
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="1" checked='checked'> 1
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="2"> 2
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="4"> 4
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="6"> 6
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="8"> 8
         % elif number_of_decks == 2:
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="1"> 1
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="2" checked='checked'> 2
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="4"> 4
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="6"> 6
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="8"> 8
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="1"> 1
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="2" checked='checked'> 2
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="4"> 4
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="6"> 6
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="8"> 8
         % elif number_of_decks == 4:
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="1"> 1
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="2"> 2
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="4" checked='checked'> 4
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="6"> 6
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="8"> 8
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="1"> 1
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="2"> 2
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="4" checked='checked'> 4
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="6"> 6
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="8"> 8
         % elif number_of_decks == 6:
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="1"> 1
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="2"> 2
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="4"> 4
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="6" checked='checked'> 6
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="8"> 8
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="1"> 1
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="2"> 2
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="4"> 4
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="6" checked='checked'> 6
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="8"> 8
         % elif number_of_decks == 8:
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="1"> 1
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="2"> 2
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="4"> 4
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="6"> 6
-        <input type="radio" style="margin-left: 0.3cm;" name='number_of_decks' value="8" checked='checked'> 8
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="1"> 1
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="2"> 2
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="4"> 4
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="6"> 6
+        <input type="radio" style="margin-left: 0.3cm;" 
+        name='number_of_decks' value="8" checked='checked'> 8
         % end
     </form>
 </div>
